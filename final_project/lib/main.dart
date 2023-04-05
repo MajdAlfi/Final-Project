@@ -1,4 +1,6 @@
 import 'package:final_project/Src/Screens/homeScr.dart';
+import 'package:final_project/Src/Screens/profileScr.dart';
+import 'package:final_project/Src/Screens/projectsScr.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: homeScr(),
+      debugShowCheckedModeBanner: false,
+      home: ProfileScr(),
     );
   }
 }
