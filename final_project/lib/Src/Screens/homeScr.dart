@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Services/Width&Height.dart';
 import 'package:final_project/Src/Services/greyColor.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Widgets/defaultProject.dart';
 import 'package:final_project/Src/Widgets/natureFactsWidget.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
 import 'package:flutter/material.dart';
@@ -127,11 +128,13 @@ class homeScr extends StatelessWidget {
                       child: ListView.separated(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => Container(
-                          color: greyColor(),
-                          height: heightScr(context) * 0.25,
-                          width: widthScr(context) * 0.85,
-                        ),
+                        itemBuilder: (context, index) =>
+                            defaultProject(context, 'Plant Trees'),
+                        // Container(
+                        //   color: greyColor(),
+                        //   height: heightScr(context) * 0.25,
+                        //   width: widthScr(context) * 0.85,
+                        // ),
                         separatorBuilder: (context, index) => const SizedBox(
                           width: 10,
                         ),

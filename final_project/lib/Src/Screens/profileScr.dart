@@ -25,20 +25,23 @@ class ProfileScr extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
+                SizedBox(
+                  height: heightScr(context) * 0.05,
+                ),
                 Row(
                   children: [
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "San Samir",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Text(
@@ -50,19 +53,19 @@ class ProfileScr extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 45,
                     )
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: heightScr(context) * 0.015,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     Text(
                       "Goal",
                       style: TextStyle(color: Colors.white),
@@ -73,9 +76,6 @@ class ProfileScr extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: 5,
                 ),
                 Container(
                   height: 10,
@@ -90,14 +90,18 @@ class ProfileScr extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(
+          height: heightScr(context) * 0.015,
+        ),
         Container(
           width: widthScr(context),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           height: heightScr(context) * 0.65,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Color.fromRGBO(250, 250, 250, 1),
               borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
           child: SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
             child: Column(
               children: [
                 Row(
@@ -108,7 +112,7 @@ class ProfileScr extends StatelessWidget {
                     defaultShowPoints(context, 25, "Supported Project"),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -117,7 +121,7 @@ class ProfileScr extends StatelessWidget {
                     Expanded(
                         child: defaultElevatedButton(
                             context, "Your Projects", () {})),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Expanded(
@@ -133,7 +137,7 @@ class ProfileScr extends StatelessWidget {
                 Container(
                   height: 150,
                   child: DChartBar(
-                    data: [
+                    data: const [
                       {
                         'id': 'Bar',
                         'data': [
