@@ -1,4 +1,7 @@
 import 'package:final_project/Src/Screens/homeScr.dart';
+import 'package:final_project/Src/Screens/leaderboard.dart';
+import 'package:final_project/Src/Screens/profileScr.dart';
+import 'package:final_project/Src/Screens/projectsScr.dart';
 import 'package:final_project/Src/Services/Width&Height.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
@@ -9,7 +12,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 class firstUI extends StatefulWidget {
   firstUI({super.key});
   int selectedIndex = 0;
-  List pages = [homeScr()];
+  List pages = [homeScr(), ProjectsScr(), Leaderboard(), ProfileScr()];
   @override
   State<firstUI> createState() => _firstUIState();
 }
