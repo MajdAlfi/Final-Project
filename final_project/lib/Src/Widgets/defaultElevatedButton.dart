@@ -13,7 +13,7 @@ ElevatedButton defaultElevatedButton(
     ),
     child: SizedBox(
         width: double.infinity,
-        height: heightScr(context) * 0.04,
+        height: heightScr(context) * 0.055,
         child: Center(
             child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

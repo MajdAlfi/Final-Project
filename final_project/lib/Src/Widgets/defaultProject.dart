@@ -27,7 +27,7 @@ Widget defaultProject(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15)),
           height: heightScr(context) * 0.40,
-          width: widthScr(context) * 0.9,
+          width: widthScr(context) * 0.95,
           child: Column(
             children: [
               Expanded(

@@ -3,6 +3,7 @@ import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Screens/projectsScr.dart';
+import 'package:final_project/Src/Screens/signUp.dart';
 import 'package:final_project/Src/Services/dataprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

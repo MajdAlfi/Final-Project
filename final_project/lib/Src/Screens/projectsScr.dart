@@ -15,13 +15,33 @@ class ProjectsScr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.separated(
-            itemBuilder: (context, index) {
-              return defaultProject(context, "Tree Plantation");
-            },
-            separatorBuilder: (context, index) => SizedBox(
-                  height: 20,
-                ),
-            itemCount: 6));
+        body: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: SizedBox(
+            height: heightScr(context) * 0.05,
+            child: Align(
+              alignment: AlignmentDirectional.bottomStart,
+              child: Text(
+                "Projects",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: heightScr(context) * 0.836,
+          child: ListView.separated(
+              itemBuilder: (context, index) {
+                return defaultProject(context, "Tree Plantation");
+              },
+              separatorBuilder: (context, index) => SizedBox(
+                    height: 20,
+                  ),
+              itemCount: 6),
+        ),
+      ],
+    ));
   }
 }
