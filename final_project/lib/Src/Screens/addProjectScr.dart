@@ -19,24 +19,24 @@ class AddProject extends StatelessWidget {
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Text("Add Project"),
+        title: const Text("Add Project"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               width: double.infinity,
               height: heightScr(context) * 0.30,
               color: greyColor(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
+                  const Text(
                     "Please choose a picture for your project",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.photo,
                     size: 75,
                   ),
@@ -46,7 +46,7 @@ class AddProject extends StatelessWidget {
                           child: defaultElevatedButton(
                               context, "From Gallery", () {},
                               icon: Icons.photo_library_rounded)),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -62,26 +62,26 @@ class AddProject extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DefaultTextField("Title", Icons.title),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DefaultTextField("Expire Date", Icons.av_timer),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DefaultTextField("Goals", Icons.grade),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   DefaultTextField(
                     "Location",
                     Icons.location_on,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultElevatedButton(context, "Apply", () {}),

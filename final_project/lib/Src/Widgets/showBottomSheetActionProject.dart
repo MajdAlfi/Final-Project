@@ -1,9 +1,11 @@
 import 'package:final_project/Src/Screens/addProjectScr.dart';
+import 'package:final_project/Src/Screens/loginScr.dart';
 import 'package:final_project/Src/Services/Width&Height.dart';
 import 'package:final_project/Src/Services/dataprovider.dart';
 import 'package:final_project/Src/Services/greyColor.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:final_project/Src/Widgets/actionBottomSheet.dart';
+import 'package:final_project/Src/Widgets/askLoginDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -98,6 +100,7 @@ class showBottomSheetActionProject extends StatelessWidget {
                                           child: TextButton(
                                             onPressed: () {
                                               Navigator.pop(context);
+                                              askLoginDialog(context);
                                             },
                                             child: const Text(
                                               'Done',
@@ -141,8 +144,11 @@ class showBottomSheetActionProject extends StatelessWidget {
                     color: Colors.white),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AddProject()));
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddProject()));
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

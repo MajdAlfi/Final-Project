@@ -22,29 +22,29 @@ class ProjectPreview extends StatelessWidget {
                     Container(
                       height: heightScr(context) * 0.25,
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.grey,
                       ),
                     ),
                     Container(
                         height: heightScr(context) * 0.25,
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         width: double.infinity,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             borderRadius: BorderRadius.vertical(
                                 bottom: Radius.circular(20))),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Spacer(
+                            const Spacer(
                               flex: 2,
                             ),
-                            Text(
+                            const Text(
                               "Tree",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(
@@ -53,16 +53,16 @@ class ProjectPreview extends StatelessWidget {
                                   Icons.location_on_outlined,
                                   color: Colors.black.withOpacity(0.5),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
-                                Text(
+                                const Text(
                                   "Erbil, Iraq",
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Row(
@@ -71,20 +71,20 @@ class ProjectPreview extends StatelessWidget {
                                   Icons.av_timer,
                                   color: Colors.black.withOpacity(0.5),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
-                                Text(
+                                const Text(
                                   "16/4/2023",
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
-                              children: [
+                              children: const [
                                 Text(
                                   "Goal",
                                 ),
@@ -94,7 +94,7 @@ class ProjectPreview extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             Container(
@@ -122,7 +122,7 @@ class ProjectPreview extends StatelessWidget {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 1.5)),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                         "3K",
                         style: TextStyle(
@@ -135,14 +135,14 @@ class ProjectPreview extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 20,
-                  left: 20,
+                  top: 60,
+                  left: 10,
                   child: IconButton(
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
+                      icon: const Icon(
+                        Icons.arrow_back,
                         color: Colors.white,
                         size: 30,
                       )),
@@ -154,10 +154,10 @@ class ProjectPreview extends StatelessWidget {
               child: Column(
                 children: [
                   defaultElevatedButton(context, "Support Project", () {}),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Align(
+                  const Align(
                     alignment: AlignmentDirectional.topStart,
                     child: Text(
                       "Overview",
@@ -165,17 +165,17 @@ class ProjectPreview extends StatelessWidget {
                           TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     "ldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjf",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  ListTile(
+                  const ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
                       radius: 30,

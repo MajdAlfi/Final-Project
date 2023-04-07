@@ -1,6 +1,5 @@
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Screens/projectPreviewScr.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Services/Width&Height.dart';
@@ -19,7 +18,7 @@ Widget defaultProject(
         Container(
           decoration: BoxDecoration(
               border: Border.all(color: Colors.black.withOpacity(0.05)),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 5,
                   color: Color.fromRGBO(0, 0, 0, 0.05),
@@ -34,7 +33,7 @@ Widget defaultProject(
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.grey,
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(20))),
@@ -42,23 +41,23 @@ Widget defaultProject(
               ),
               Expanded(
                   child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       width: double.infinity,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           borderRadius: BorderRadius.vertical(
                               bottom: Radius.circular(20))),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Spacer(
+                          const Spacer(
                             flex: 2,
                           ),
                           Text(
                             "$label",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 25),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Row(
@@ -67,18 +66,18 @@ Widget defaultProject(
                                 Icons.av_timer,
                                 color: Colors.black.withOpacity(0.5),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Text(
+                              const Text(
                                 "16/4/2023",
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Row(
-                            children: [
+                            children: const [
                               Text(
                                 "Goal",
                               ),
@@ -88,7 +87,7 @@ Widget defaultProject(
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -116,7 +115,7 @@ Widget defaultProject(
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 1.5)),
-              child: Center(
+              child: const Center(
                   child: Text(
                 "3K",
                 style: TextStyle(

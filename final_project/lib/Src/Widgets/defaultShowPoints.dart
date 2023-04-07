@@ -9,7 +9,7 @@ Container defaultShowPoints(BuildContext context, int point, String label) {
     height: 60,
     decoration: BoxDecoration(
         border: Border.all(color: Colors.black.withOpacity(0.05)),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 5,
             color: Color.fromRGBO(0, 0, 0, 0.05),
@@ -24,7 +24,7 @@ Container defaultShowPoints(BuildContext context, int point, String label) {
           Expanded(
             child: Text(
               "$point",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
               ),
               textAlign: TextAlign.center,
@@ -34,7 +34,7 @@ Container defaultShowPoints(BuildContext context, int point, String label) {
               flex: 2,
               child: Text(
                 "$label",
-                style: TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 12),
                 textAlign: TextAlign.center,
               ))
         ],
