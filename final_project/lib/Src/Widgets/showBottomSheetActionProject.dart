@@ -1,9 +1,12 @@
 import 'package:final_project/Src/Services/Width&Height.dart';
+import 'package:final_project/Src/Services/dataprovider.dart';
 import 'package:final_project/Src/Services/greyColor.dart';
+import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:final_project/Src/Widgets/actionBottomSheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
 class showBottomSheetActionProject extends StatelessWidget {
   const showBottomSheetActionProject({super.key});
@@ -34,7 +37,83 @@ class showBottomSheetActionProject extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         context: context,
                         builder: (BuildContext context) {
-                          return const actionBottomSheet();
+                          return Stack(
+                            children: [
+                              const actionBottomSheet(),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Container(
+                                  height: heightScr(context) * 0.1,
+                                  width: widthScr(context),
+                                  color: greyColor(),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 12.0),
+                                        child: Container(
+                                          width: widthScr(context) * 0.27,
+                                          height: heightScr(context) * 0.045,
+                                          decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(30))),
+                                          child: TextButton(
+                                            onPressed: () {
+                                              for (int i = 0; i < 10; i++) {
+                                                Provider.of<dataprovider>(
+                                                        context,
+                                                        listen: false)
+                                                    .changeIsSelectedGroupBtn(
+                                                        false, i);
+                                              }
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text(
+                                              'Cancel',
+                                              style: TextStyle(
+                                                  color: Colors.red,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 15),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 12.0),
+                                        child: Container(
+                                          width: widthScr(context) * 0.27,
+                                          height: heightScr(context) * 0.045,
+                                          decoration: BoxDecoration(
+                                              color: mainColor(),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(30))),
+                                          child: TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text(
+                                              'Done',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 15),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          );
                         });
                   },
                   child: Column(
