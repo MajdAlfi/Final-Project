@@ -1,3 +1,4 @@
+import 'package:final_project/Src/Screens/addProjectScr.dart';
 import 'package:final_project/Src/Services/Width&Height.dart';
 import 'package:final_project/Src/Services/dataprovider.dart';
 import 'package:final_project/Src/Services/greyColor.dart';
@@ -139,7 +140,10 @@ class showBottomSheetActionProject extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Colors.white),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddProject()));
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

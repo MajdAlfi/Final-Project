@@ -16,6 +16,7 @@ void main() {
       ),
     ],
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: firstUI(),
     ),
   ));

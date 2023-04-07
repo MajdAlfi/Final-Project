@@ -3,7 +3,8 @@ import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:flutter/material.dart';
 
 ElevatedButton defaultElevatedButton(
-    BuildContext context, String label, dynamic onTap) {
+    BuildContext context, String label, dynamic onTap,
+    {IconData? icon}) {
   return ElevatedButton(
     onPressed: onTap,
     style: ElevatedButton.styleFrom(
@@ -14,9 +15,21 @@ ElevatedButton defaultElevatedButton(
         width: double.infinity,
         height: heightScr(context) * 0.04,
         child: Center(
-            child: Text(
-          label,
-          style: const TextStyle(fontSize: 15),
+            child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              label,
+              style: const TextStyle(fontSize: 15),
+            ),
+            Visibility(
+              visible: icon != null,
+              child: SizedBox(
+                width: 5,
+              ),
+            ),
+            Visibility(visible: icon != null, child: Icon(icon))
+          ],
         ))),
   );
 }
