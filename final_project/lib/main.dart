@@ -19,7 +19,10 @@ void main() {
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      routes: {'/loginScr': (context) => const loginScr()},
+      routes: {
+        '/loginScr': (context) => const loginScr(),
+        '/signupScr': (context) => const SignUp()
+      },
       home: firstUI(),
     ),
   ));

@@ -1,12 +1,8 @@
 import 'package:final_project/Src/Services/Width&Height.dart';
-import 'package:final_project/Src/Services/greyColor.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/Src/Widgets/defaultTextField.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -22,19 +18,40 @@ class SignUp extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: heightScr(context) * 0.05,
+                  height: heightScr(context) * 0.08,
                 ),
-                Text(
-                  "Sign Up",
-                  style: TextStyle(
-                      color: mainColor(),
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
+                Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              size: 27,
+                            )),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'SignUp',
+                        style: TextStyle(
+                            color: mainColor(),
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: heightScr(context) * 0.05,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 60,
                   backgroundImage: AssetImage(
                     "assets/images/defaultProfileImage.jpg",
@@ -79,7 +96,9 @@ class SignUp extends StatelessWidget {
                 Align(
                   alignment: AlignmentDirectional.topEnd,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/loginScr');
+                    },
                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                     child: Text(
                       "Already have an account?",

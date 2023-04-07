@@ -116,12 +116,14 @@ class loginScr extends StatelessWidget {
                   )),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 8.0),
+              padding: const EdgeInsets.only(right: 10.0),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                    onPressed: () {},
-                    child: const Text('Already have an account?')),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/signupScr');
+                    },
+                    child: const Text('Create an Account')),
               ),
             )
           ],
