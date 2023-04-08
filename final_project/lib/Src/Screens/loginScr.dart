@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Services/Width&Height.dart';
 import 'package:final_project/Src/Services/greyColor.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Widgets/defaultTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -59,41 +60,33 @@ class loginScr extends StatelessWidget {
             SizedBox(
               height: heightScr(context) * 0.03,
             ),
-            SizedBox(
-              height: heightScr(context) * 0.06,
-              width: widthScr(context) * 0.85,
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: greyColor(),
-                  hintText: 'Email',
-                  border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
-                      ),
-                      borderSide: BorderSide.none),
-                ),
-              ),
-            ),
+            DefaultTextField("Email", Icons.email),
             SizedBox(
               height: heightScr(context) * 0.01,
             ),
-            SizedBox(
-              height: heightScr(context) * 0.06,
-              width: widthScr(context) * 0.85,
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: greyColor(),
-                  hintText: 'Password',
-                  border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
-                      ),
-                      borderSide: BorderSide.none),
-                ),
-              ),
+            DefaultTextField(
+              "Password",
+              Icons.password,
+              secure: true,
+              sufIcon: Icons.visibility_off,
+              onSufIconTap: () {},
             ),
+            // SizedBox(
+            //   height: heightScr(context) * 0.06,
+            //   width: widthScr(context) * 0.85,
+            //   child: TextField(
+            //     decoration: InputDecoration(
+            //       filled: true,
+            //       fillColor: greyColor(),
+            //       hintText: 'Password',
+            //       border: const OutlineInputBorder(
+            //           borderRadius: BorderRadius.all(
+            //             Radius.circular(30),
+            //           ),
+            //           borderSide: BorderSide.none),
+            //     ),
+            //   ),
+            // ),
             SizedBox(
               height: heightScr(context) * 0.03,
             ),
