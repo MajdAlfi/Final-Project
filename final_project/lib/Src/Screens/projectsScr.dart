@@ -17,26 +17,30 @@ class ProjectsScr extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
+        SizedBox(
+          height: heightScr(context) * 0.08,
+        ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding: const EdgeInsets.only(left: 10.0),
           child: SizedBox(
             height: heightScr(context) * 0.05,
-            child: Align(
+            child: const Align(
               alignment: AlignmentDirectional.bottomStart,
               child: Text(
                 "Projects",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
               ),
             ),
           ),
         ),
         SizedBox(
-          height: heightScr(context) * 0.836,
+          height: heightScr(context) * 0.756,
           child: ListView.separated(
+              padding: EdgeInsets.only(top: 15),
               itemBuilder: (context, index) {
                 return defaultProject(context, "Tree Plantation");
               },
-              separatorBuilder: (context, index) => SizedBox(
+              separatorBuilder: (context, index) => const SizedBox(
                     height: 20,
                   ),
               itemCount: 6),

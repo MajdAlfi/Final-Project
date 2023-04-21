@@ -8,6 +8,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../Services/mainColor.dart';
 
 class ProjectPreview extends StatelessWidget {
+  String overView =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla augue pretium mi mattis ultrices. Aliquam consequat iaculis ex, in cursus arcu congue at. Ut aliquam tellus erat, non convallis massa mattis ac. In hac habitasse platea dictumst. Sed vestibulum sapien eget vestibulum faucibus. Nulla odio arcu, pellentesque laoreet pellentesque eget, tincidunt ut felis. Nam vel elementum orci. Vestibulum eu elit est. Maecenas vestibulum ante at nisl mattis, nec tincidunt arcu semper. Vestibulum euismod, odio ac efficitur porta, massa nunc sagittis erat, in pretium metus sem eu nisl. Duis faucibus velit eu viverra euismod. In hac habitasse platea dictumst. Donec ac risus nisi. Aliquam et aliquam mauris. Phasellus dui mi, condimentum quis semper vel, facilisis nec eros. Etiam viverra ut nulla et sagittis. Praesent et velit dapibus, cursus elit at, vehicula tellus. Pellentesque';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -168,9 +170,10 @@ class ProjectPreview extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text(
-                    "ldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjfldskjflsdkjfslkdjfslkdjflskdjflsdkjflskdjfldskjfldkjlskjflksjdlksjflksjlfkjslkdjflskjdflksjdflksjldkfjsdlkdfjdslkjfdlkjflsdkjflsdkjflsdkfjdkjdslkjldkjf",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  Text(
+                    overView,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(
                     height: 20,
