@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
+import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -47,9 +49,20 @@ void signIn(String email, String password, BuildContext context) {
   });
 }
 
-Future<void> anonymous() {
-  return auth.signInAnonymously().then((value) => FirebaseFirestore.instance
-      .collection("Users")
-      .doc(value.user!.uid)
-      .set({"name": "Anonymous"}));
+Future anonymous(context) async {
+  await auth.signInAnonymously().then((value) async {
+    FirebaseFirestore.instance
+        .collection("Users")
+        .doc(value.user!.uid)
+        .set({"name": "Anonymous", "points": 0, "ActionsCompleted": 0});
+    final userData = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(value.user!.uid)
+        .get();
+    final user = userModel(
+        name: userData['name'],
+        actionsCompleted: userData['ActionsCompleted'],
+        points: userData['points']);
+    Provider.of<dataprovider>(context, listen: false).changeUserData(user);
+  });
 }

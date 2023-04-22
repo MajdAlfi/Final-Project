@@ -2,11 +2,13 @@ import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/leaderboard.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Screens/projectsScr.dart';
+import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Home/natureFactGet.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -24,8 +26,14 @@ class _firstUIState extends State<firstUI> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCurrentUser(context);
+
     natureFactGet(context);
+
+    if (anonymousCheck() == false) {
+      getCurrentUser(context);
+    } else {
+      anonymous(context);
+    }
   }
 
   @override

@@ -6,6 +6,7 @@ import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultProject.dart';
 import 'package:final_project/Src/Widgets/natureFactsWidget.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,13 +49,13 @@ class homeScr extends StatelessWidget {
                           const SizedBox(
                             width: 2,
                           ),
-                          Visibility(
-                            visible: anonymousCheck(),
-                            child: Text(
-                              getUid(),
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          )
+                          // Visibility(
+                          //   visible: anonymousCheck(),
+                          //   child: Text(
+                          //     getUid(),
+                          //     style: const TextStyle(color: Colors.white),
+                          //   ),
+                          // )
                         ],
                       )),
                   Positioned(
