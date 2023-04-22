@@ -1,11 +1,11 @@
 import 'package:d_chart/d_chart.dart';
-import 'package:final_project/Src/Services/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../Services/mainColor.dart';
+import '../Services/Others/mainColor.dart';
 
 class ProjectPreview extends StatelessWidget {
   String overView =

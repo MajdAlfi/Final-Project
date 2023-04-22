@@ -1,5 +1,5 @@
-import 'package:final_project/Src/Services/Width&Height.dart';
-import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:flutter/material.dart';
 
 ElevatedButton defaultElevatedButton(

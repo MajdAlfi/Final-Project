@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
-import 'package:final_project/Src/Services/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

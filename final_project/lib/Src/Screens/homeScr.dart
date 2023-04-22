@@ -1,37 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:final_project/Src/Services/Width&Height.dart';
-import 'package:final_project/Src/Services/greyColor.dart';
-import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultProject.dart';
 import 'package:final_project/Src/Widgets/natureFactsWidget.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../Services/getCurrentUser.dart';
+import '../Services/Auth/getCurrentUser.dart';
 
 class homeScr extends StatelessWidget {
   homeScr({super.key});
-  String fact =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nisi velit, cursus a posuere a, dapibus ut turpis. Nulla et eleifend enim. Nullam vitae ligula tempor, pretium erat non, mattis ante. Nullam vitae cursus purus, eu feugiat lectus. Nullam non accumsan magna. Aliquam sed ornare enim, eget viverra risus.';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainColor(),
-      body: FutureBuilder(
-          future: getCurrentUser(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container(
-                height: heightScr(context),
-                width: widthScr(context),
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ),
-              );
-            } else {
-              return Stack(
+        backgroundColor: mainColor(),
+        body: (context.watch<dataprovider>().userData == null)
+            ? const Center(
+                child: SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(),
+              ))
+            : Stack(
                 children: [
                   Positioned(
                       top: heightScr(context) * 0.09,
@@ -41,21 +34,25 @@ class homeScr extends StatelessWidget {
                         textBaseline: TextBaseline.alphabetic,
                         children: [
                           Text(
-                            "${snapshot.data!["name"]}",
-                            style: TextStyle(
+                            context
+                                .read<dataprovider>()
+                                .userData!
+                                .name
+                                .toString(),
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 25,
                                 fontWeight: FontWeight.w700),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 2,
                           ),
                           Visibility(
                             visible: anonymousCheck(),
                             child: Text(
                               getUid(),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             ),
                           )
                         ],
@@ -72,23 +69,33 @@ class homeScr extends StatelessWidget {
                       )),
                   Positioned(
                       top: heightScr(context) * 0.15,
-                      left: widthScr(context) * 0.2,
-                      child: const Text(
-                        '20',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold),
-                      )),
-                  Positioned(
-                      top: heightScr(context) * 0.1755,
-                      left: widthScr(context) * 0.35,
-                      child: const Text(
-                        'Points',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300),
+                      left: (context.read<dataprovider>().userData!.points! >
+                              1000)
+                          ? widthScr(context) * 0.1
+                          : widthScr(context) * 0.12,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            context
+                                .watch<dataprovider>()
+                                .userData!
+                                .points
+                                .toString(),
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
+                            'Points',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ],
                       )),
                   Align(
                     alignment: Alignment.bottomCenter,
@@ -132,12 +139,18 @@ class homeScr extends StatelessWidget {
                                     const EdgeInsets.only(left: 10, right: 10),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) =>
-                                    natureFactsWidget(fact: fact),
+                                    natureFactsWidget(
+                                        fact: context
+                                            .read<dataprovider>()
+                                            .natureFact[index]['natureFact']),
                                 separatorBuilder: (context, index) =>
                                     const SizedBox(
                                   width: 10,
                                 ),
-                                itemCount: 10,
+                                itemCount: context
+                                    .read<dataprovider>()
+                                    .natureFact
+                                    .length,
                               ),
                             ),
                             SizedBox(
@@ -192,9 +205,6 @@ class homeScr extends StatelessWidget {
                           width: widthScr(context) * 0.6,
                           child: Image.asset('assets/images/tree.png'))),
                 ],
-              );
-            }
-          }),
-    );
+              ));
   }
 }

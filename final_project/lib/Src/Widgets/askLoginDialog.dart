@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Services/Width&Height.dart';
-import '../Services/mainColor.dart';
+import '../Services/Others/Width&Height.dart';
+import '../Services/Others/mainColor.dart';
 
 Future askLoginDialog(context) {
   return showDialog(

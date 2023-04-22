@@ -1,10 +1,9 @@
 import 'package:d_chart/d_chart.dart';
-import 'package:final_project/Src/Services/Width&Height.dart';
-import 'package:final_project/Src/Services/authentication.dart';
-import 'package:final_project/Src/Services/dataprovider.dart';
-import 'package:final_project/Src/Services/getCurrentUser.dart';
-import 'package:final_project/Src/Services/greyColor.dart';
-import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
+import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,22 +21,15 @@ class ProfileScr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainColor(),
-      body: FutureBuilder(
-          future: getCurrentUser(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container(
-                height: heightScr(context),
-                width: widthScr(context),
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ),
-                ),
-              );
-            } else {
-              return Stack(
+        backgroundColor: mainColor(),
+        body: (context.watch<dataprovider>().userData == null)
+            ? const Center(
+                child: SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(),
+              ))
+            : Stack(
                 alignment: AlignmentDirectional.bottomCenter,
                 children: [
                   Container(
@@ -64,7 +56,11 @@ class ProfileScr extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      snapshot.data!["name"],
+                                      context
+                                          .read<dataprovider>()
+                                          .userData!
+                                          .name
+                                          .toString(),
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 25,
@@ -195,9 +191,6 @@ class ProfileScr extends StatelessWidget {
                     ),
                   )
                 ],
-              );
-            }
-          }),
-    );
+              ));
   }
 }

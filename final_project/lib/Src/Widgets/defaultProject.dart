@@ -2,8 +2,8 @@ import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Screens/projectPreviewScr.dart';
 import 'package:flutter/material.dart';
 
-import '../Services/Width&Height.dart';
-import '../Services/mainColor.dart';
+import '../Services/Others/Width&Height.dart';
+import '../Services/Others/mainColor.dart';
 
 Widget defaultProject(
   BuildContext context,

@@ -43,6 +43,10 @@ dependencies:
   firebase_storage: ^11.1.1
   firebase_auth: any
   fluttertoast: ^8.0.7
+  http: ^0.13.5
+  image_picker: ^0.8.7+4
+  image_cropper: ^3.0.2
+  syncfusion_flutter_datepicker: ^21.1.41
   
 
 

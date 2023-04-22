@@ -1,7 +1,6 @@
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../Services/Width&Height.dart';
 
 Container defaultShowPoints(BuildContext context, int point, String label) {
   return Container(

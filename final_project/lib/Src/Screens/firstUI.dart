@@ -2,9 +2,10 @@ import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/leaderboard.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Screens/projectsScr.dart';
-import 'package:final_project/Src/Services/Width&Height.dart';
-import 'package:final_project/Src/Services/authentication.dart';
-import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
+import 'package:final_project/Src/Services/Home/natureFactGet.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,6 +20,14 @@ class firstUI extends StatefulWidget {
 }
 
 class _firstUIState extends State<firstUI> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentUser(context);
+    natureFactGet(context);
+  }
+
   @override
   void _onTapFunc(int index) {
     setState(() {

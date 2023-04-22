@@ -1,7 +1,7 @@
-import 'package:final_project/Src/Services/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:flutter/material.dart';
 
-import '../Services/greyColor.dart';
+import '../Services/Others/greyColor.dart';
 
 class DefaultTextField extends StatelessWidget {
   String label;
@@ -19,11 +19,16 @@ class DefaultTextField extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: heightScr(context) * 0.065,
+      height: (label == 'Overview')
+          ? heightScr(context) * 0.1
+          : heightScr(context) * 0.065,
       width: widthScr(context) * 0.85,
       child: TextFormField(
+        maxLines: (label == 'Overview') ? 5 : 1,
         controller: textController,
         obscureText: secure ?? false,
+        keyboardType:
+            (label == 'Goal') ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
             suffixIcon: IconButton(
               onPressed: onSufIconTap,

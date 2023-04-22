@@ -1,11 +1,16 @@
 import 'package:final_project/Src/Screens/addProjectScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
-import 'package:final_project/Src/Services/Width&Height.dart';
-import 'package:final_project/Src/Services/dataprovider.dart';
-import 'package:final_project/Src/Services/greyColor.dart';
-import 'package:final_project/Src/Services/mainColor.dart';
+import 'package:final_project/Src/Services/Home/addPoints.dart';
+import 'package:final_project/Src/Widgets/cancelAction.dart';
+import 'package:final_project/Src/Widgets/doneAction.dart';
+import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/actionBottomSheet.dart';
 import 'package:final_project/Src/Widgets/askLoginDialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -54,64 +59,9 @@ class showBottomSheetActionProject extends StatelessWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 12.0),
-                                        child: Container(
-                                          width: widthScr(context) * 0.27,
-                                          height: heightScr(context) * 0.045,
-                                          decoration: const BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(30))),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              for (int i = 0; i < 10; i++) {
-                                                Provider.of<dataprovider>(
-                                                        context,
-                                                        listen: false)
-                                                    .changeIsSelectedGroupBtn(
-                                                        false, i);
-                                              }
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text(
-                                              'Cancel',
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 15),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 12.0),
-                                        child: Container(
-                                          width: widthScr(context) * 0.27,
-                                          height: heightScr(context) * 0.045,
-                                          decoration: BoxDecoration(
-                                              color: mainColor(),
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(30))),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                              askLoginDialog(context);
-                                            },
-                                            child: const Text(
-                                              'Done',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 15),
-                                            ),
-                                          ),
-                                        ),
-                                      )
+                                    children: const [
+                                      cancelAction(),
+                                      doneAction()
                                     ],
                                   ),
                                 ),
@@ -145,10 +95,8 @@ class showBottomSheetActionProject extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AddProject()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddProject()));
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
