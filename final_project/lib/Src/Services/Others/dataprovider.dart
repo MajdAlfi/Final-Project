@@ -58,12 +58,13 @@ class dataprovider extends ChangeNotifier {
   signOut(context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     _auth.signOut().then((value) async {
-      await anonymous(context).then((value) => Navigator.pushReplacement(
+      await anonymous().then((value) => Navigator.pushReplacement(
           context,
           MaterialPageRoute(
             builder: (context) => firstUI(),
           )));
       userData = userModel();
+      anonymousSaveData(context);
     });
 
     notifyListeners();

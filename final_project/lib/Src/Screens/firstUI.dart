@@ -26,17 +26,17 @@ class _firstUIState extends State<firstUI> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    FirebaseAuth.instance.currentUser != null ? null : anonymous(context);
+    // FirebaseAuth.instance.currentUser != null ? null : anonymous(context);
 
-    getCurrentUser(context);
+    // getCurrentUser(context);
     natureFactGet(context);
 
-    // if (anonymousCheck() == false) {
-    // getCurrentUser(context);
-    // } else {
-    // anonymous(context);
-    // natureFactGet(context);
-    // }
+    if (anonymousCheck() == false) {
+      getCurrentUser(context);
+    } else {
+      anonymousSaveData(context);
+      natureFactGet(context);
+    }
   }
 
   @override
