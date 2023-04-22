@@ -1,11 +1,14 @@
 import 'package:final_project/Src/Services/Width&Height.dart';
+import 'package:final_project/Src/Services/authentication.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/Src/Widgets/defaultTextField.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +63,19 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   height: heightScr(context) * 0.05,
                 ),
-                DefaultTextField("Name", Icons.perm_identity),
+                DefaultTextField(
+                  "Name",
+                  Icons.perm_identity,
+                  textController: nameController,
+                ),
                 SizedBox(
                   height: heightScr(context) * 0.01,
                 ),
-                DefaultTextField("Email", Icons.email),
+                DefaultTextField(
+                  "Email",
+                  Icons.email,
+                  textController: emailController,
+                ),
                 SizedBox(
                   height: heightScr(context) * 0.01,
                 ),
@@ -74,6 +85,7 @@ class SignUp extends StatelessWidget {
                   secure: true,
                   sufIcon: Icons.visibility_off_rounded,
                   onSufIconTap: () {},
+                  textController: passwordController,
                 ),
                 SizedBox(
                   height: heightScr(context) * 0.01,
@@ -91,7 +103,13 @@ class SignUp extends StatelessWidget {
                 defaultElevatedButton(
                   context,
                   "Sign UP",
-                  () {},
+                  () {
+                    register(
+                        emailController.text.toString(),
+                        passwordController.text.toString(),
+                        nameController.text.toString(),
+                        context);
+                  },
                 ),
                 Align(
                   alignment: AlignmentDirectional.topEnd,

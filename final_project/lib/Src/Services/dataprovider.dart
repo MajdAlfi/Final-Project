@@ -1,6 +1,11 @@
 import 'package:final_project/Src/Models/actionButtonListType.dart';
+import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Widgets/actionBottomSheet.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'authentication.dart';
 
 class dataprovider extends ChangeNotifier {
   List<actionButtonListType> btnList = [
@@ -67,6 +72,19 @@ class dataprovider extends ChangeNotifier {
   ];
   changeIsSelectedGroupBtn(bool isSelected, int index) {
     btnList.elementAt(index).isSeleccted = isSelected;
+    notifyListeners();
+  }
+
+  signOut(context) {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    _auth.signOut().then((value) {
+      anonymous().then((value) => Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => firstUI(),
+          )));
+    });
+
     notifyListeners();
   }
 }

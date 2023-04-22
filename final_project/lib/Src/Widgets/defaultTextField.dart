@@ -9,14 +9,20 @@ class DefaultTextField extends StatelessWidget {
   bool? secure;
   IconData? sufIcon;
   VoidCallback? onSufIconTap;
+  TextEditingController? textController;
   DefaultTextField(this.label, this.icon,
-      {super.key, this.secure, this.sufIcon, this.onSufIconTap});
+      {super.key,
+      this.secure,
+      this.sufIcon,
+      this.onSufIconTap,
+      this.textController});
 
   Widget build(BuildContext context) {
     return SizedBox(
       height: heightScr(context) * 0.065,
       width: widthScr(context) * 0.85,
       child: TextFormField(
+        controller: textController,
         obscureText: secure ?? false,
         decoration: InputDecoration(
             suffixIcon: IconButton(

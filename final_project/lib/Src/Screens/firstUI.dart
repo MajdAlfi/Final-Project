@@ -3,6 +3,7 @@ import 'package:final_project/Src/Screens/leaderboard.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Screens/projectsScr.dart';
 import 'package:final_project/Src/Services/Width&Height.dart';
+import 'package:final_project/Src/Services/authentication.dart';
 import 'package:final_project/Src/Services/mainColor.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class firstUI extends StatefulWidget {
 }
 
 class _firstUIState extends State<firstUI> {
+  @override
   void _onTapFunc(int index) {
     setState(() {
       widget.selectedIndex = index;

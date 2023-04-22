@@ -2,6 +2,8 @@ import 'package:final_project/Src/Screens/firstUi.dart';
 import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
+import 'package:final_project/Src/Services/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:final_project/Src/Screens/projectsScr.dart';
@@ -16,6 +18,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  FirebaseAuth.instance.currentUser != null ? null : await anonymous();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -27,8 +31,8 @@ Future<void> main() async {
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/loginScr': (context) => const loginScr(),
-        '/signupScr': (context) => const SignUp()
+        '/loginScr': (context) => loginScr(),
+        '/signupScr': (context) => SignUp()
       },
       home: firstUI(),
     ),
