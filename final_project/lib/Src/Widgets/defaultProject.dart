@@ -6,12 +6,29 @@ import '../Services/Others/Width&Height.dart';
 import '../Services/Others/mainColor.dart';
 
 Widget defaultProject(
-  BuildContext context,
-  String label,
-) {
+    BuildContext context,
+    String label,
+    String img,
+    String expDate,
+    int currentPoints,
+    int goal,
+    String overview,
+    String uid,
+    String location) {
   return GestureDetector(
     onTap: () => Navigator.push(
-        context, MaterialPageRoute(builder: (context) => ProjectPreview())),
+        context,
+        MaterialPageRoute(
+            builder: (context) => ProjectPreview(
+                  title: label,
+                  img: img,
+                  currentPoints: currentPoints,
+                  expDate: expDate,
+                  goal: goal,
+                  overView: overview,
+                  uid: uid,
+                  location: location,
+                ))),
     child: Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -33,7 +50,9 @@ Widget defaultProject(
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(img), fit: BoxFit.fill),
                       color: Colors.grey,
                       borderRadius:
                           BorderRadius.vertical(top: Radius.circular(20))),
@@ -69,21 +88,21 @@ Widget defaultProject(
                               const SizedBox(
                                 width: 5,
                               ),
-                              const Text(
-                                "16/4/2023",
+                              Text(
+                                "$expDate",
                                 style: TextStyle(fontSize: 16),
                               ),
                             ],
                           ),
                           const Spacer(),
                           Row(
-                            children: const [
+                            children: [
                               Text(
                                 "Goal",
                               ),
                               Spacer(),
                               Text(
-                                "100",
+                                "$currentPoints",
                               ),
                             ],
                           ),
@@ -95,8 +114,8 @@ Widget defaultProject(
                             child: DChartSingleBar(
                               radius: BorderRadius.circular(15),
                               forgroundColor: mainColor(),
-                              value: 80,
-                              max: 100,
+                              value: currentPoints.toDouble(),
+                              max: goal.toDouble(),
                             ),
                           ),
                         ],
@@ -115,9 +134,9 @@ Widget defaultProject(
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 1.5)),
-              child: const Center(
+              child: Center(
                   child: Text(
-                "3K",
+                goal > 1000 ? "${(goal / 1000).floor()}K" : "$goal",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,

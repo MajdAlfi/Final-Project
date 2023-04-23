@@ -9,6 +9,7 @@ import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../Services/Auth/getCurrentUser.dart';
 
@@ -61,8 +62,12 @@ class homeScr extends StatelessWidget {
                   Positioned(
                       top: heightScr(context) * 0.125,
                       left: widthScr(context) * 0.1,
-                      child: const Text(
-                        'desc',
+                      child:  Text(
+                         context
+                                .watch<dataprovider>()
+                                .userData!
+                                .desc
+                                .toString(),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
@@ -173,25 +178,55 @@ class homeScr extends StatelessWidget {
                             SizedBox(
                               height: heightScr(context) * 0.03,
                             ),
-                            Container(
-                              height: heightScr(context) * 0.31,
-                              child: ListView.separated(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (context, index) =>
-                                    defaultProject(context, 'Plant Trees'),
-                                // Container(
-                                //   color: greyColor(),
-                                //   height: heightScr(context) * 0.25,
-                                //   width: widthScr(context) * 0.85,
-                                // ),
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox(
-                                  width: 10,
-                                ),
-                                itemCount: 10,
-                              ),
+                            FutureBuilder(
+                              future: FirebaseFirestore.instance
+                                  .collection("Projects")
+                                  .get(),
+                              builder: (context, snapshot) => snapshot
+                                          .connectionState ==
+                                      ConnectionState.waiting
+                                  ? SizedBox()
+                                  : Container(
+                                      height: heightScr(context) * 0.31,
+                                      child: ListView.separated(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) =>
+                                            defaultProject(
+                                                context,
+                                                snapshot.data!.docs[index]
+                                                    ["title"],
+                                                snapshot.data!.docs[index]
+                                                    ["projectIMG"],
+                                                DateFormat('yyyy/MM/dd').format(
+                                                    snapshot
+                                                        .data!
+                                                        .docs[index]
+                                                            ["expireDate"]
+                                                        .toDate()),
+                                                snapshot.data!.docs[index]
+                                                    ["currentPoints"],
+                                                snapshot.data!.docs[index]
+                                                    ["Goal"],
+                                                snapshot.data!.docs[index]
+                                                    ["overview"],
+                                                snapshot.data!.docs[index]
+                                                    ["uid"],
+                                                snapshot.data!.docs[index]
+                                                    ["Location"]),
+                                        // Container(
+                                        //   color: greyColor(),
+                                        //   height: heightScr(context) * 0.25,
+                                        //   width: widthScr(context) * 0.85,
+                                        // ),
+                                        separatorBuilder: (context, index) =>
+                                            const SizedBox(
+                                          width: 10,
+                                        ),
+                                        itemCount: snapshot.data!.docs.length,
+                                      ),
+                                    ),
                             )
                           ],
                         ),

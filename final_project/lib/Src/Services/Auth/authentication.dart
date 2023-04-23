@@ -20,9 +20,17 @@ void register(
         password: password,
       )
       .then((value) => FirebaseFirestore.instance
-          .collection("Users")
-          .doc(value.user!.uid)
-          .set({"name": name}))
+              .collection("Users")
+              .doc(value.user!.uid)
+              .set({
+            "name": name,
+            "points": 0,
+            "ActionsCompleted": 0,
+            "description": "description",
+            "goal": 10,
+            "yourProject": [].toList(),
+            "supportedProject": [].toList()
+          }))
       .then((value) => Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => firstUI())));
 }
@@ -51,10 +59,15 @@ void signIn(String email, String password, BuildContext context) {
 
 Future anonymous() async {
   await auth.signInAnonymously().then((value) async {
-    FirebaseFirestore.instance
-        .collection("Users")
-        .doc(value.user!.uid)
-        .set({"name": "Anonymous", "points": 0, "ActionsCompleted": 0});
+    FirebaseFirestore.instance.collection("Users").doc(value.user!.uid).set({
+      "name": "Anonymous",
+      "points": 0,
+      "ActionsCompleted": 0,
+      "description": "description",
+      "goal": 10,
+      "yourProject": [].toList(),
+      "supportedProject": [].toList()
+    });
   });
 }
 
@@ -63,8 +76,13 @@ Future anonymousSaveData(context) async {
   final userData =
       await FirebaseFirestore.instance.collection("Users").doc(getUid()).get();
   final user = userModel(
-      name: userData['name'],
-      actionsCompleted: userData['ActionsCompleted'],
-      points: userData['points']);
+    name: userData['name'],
+    actionsCompleted: userData['ActionsCompleted'],
+    points: userData['points'],
+    desc: userData['description'],
+    goal: userData['goal'],
+    supportedProjects: userData['supportedProject'],
+    yourProject: userData['yourProject'],
+  );
   Provider.of<dataprovider>(context, listen: false).changeUserData(user);
 }

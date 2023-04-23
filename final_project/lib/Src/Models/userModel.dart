@@ -4,13 +4,13 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 
 class userModel {
-  int? points;
-  String? name;
-  List<int>? supportedProjects;
-  List<int>? yourProject;
-  String? desc;
-  int? goal;
-  int? actionsCompleted;
+  int? points; //
+  String? name; //
+  List? supportedProjects;
+  List? yourProject;
+  String? desc; //
+  int? goal; //
+  int? actionsCompleted; //
   userModel({
     this.points,
     this.name,

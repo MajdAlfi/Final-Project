@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
@@ -8,6 +9,23 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import '../Services/Others/mainColor.dart';
 
 class ProjectPreview extends StatelessWidget {
+  ProjectPreview(
+      {required this.title,
+      required this.goal,
+      required this.currentPoints,
+      required this.expDate,
+      required this.img,
+      required this.location,
+      required this.overView,
+      required this.uid});
+  String title;
+  int goal;
+  String location;
+  int currentPoints;
+  String img;
+  String expDate;
+  String uid;
+
   String overView =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla augue pretium mi mattis ultrices. Aliquam consequat iaculis ex, in cursus arcu congue at. Ut aliquam tellus erat, non convallis massa mattis ac. In hac habitasse platea dictumst. Sed vestibulum sapien eget vestibulum faucibus. Nulla odio arcu, pellentesque laoreet pellentesque eget, tincidunt ut felis. Nam vel elementum orci. Vestibulum eu elit est. Maecenas vestibulum ante at nisl mattis, nec tincidunt arcu semper. Vestibulum euismod, odio ac efficitur porta, massa nunc sagittis erat, in pretium metus sem eu nisl. Duis faucibus velit eu viverra euismod. In hac habitasse platea dictumst. Donec ac risus nisi. Aliquam et aliquam mauris. Phasellus dui mi, condimentum quis semper vel, facilisis nec eros. Etiam viverra ut nulla et sagittis. Praesent et velit dapibus, cursus elit at, vehicula tellus. Pellentesque';
   @override
@@ -24,9 +42,9 @@ class ProjectPreview extends StatelessWidget {
                     Container(
                       height: heightScr(context) * 0.25,
                       width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                      ),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(img), fit: BoxFit.fill)),
                     ),
                     Container(
                         height: heightScr(context) * 0.25,
@@ -41,8 +59,8 @@ class ProjectPreview extends StatelessWidget {
                             const Spacer(
                               flex: 2,
                             ),
-                            const Text(
-                              "Tree",
+                            Text(
+                              "$title",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25),
                             ),
@@ -58,8 +76,8 @@ class ProjectPreview extends StatelessWidget {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                const Text(
-                                  "Erbil, Iraq",
+                                Text(
+                                  "$location",
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
@@ -76,8 +94,8 @@ class ProjectPreview extends StatelessWidget {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                const Text(
-                                  "16/4/2023",
+                                Text(
+                                  "$expDate",
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
@@ -86,13 +104,13 @@ class ProjectPreview extends StatelessWidget {
                               height: 20,
                             ),
                             Row(
-                              children: const [
+                              children: [
                                 Text(
                                   "Goal",
                                 ),
                                 Spacer(),
                                 Text(
-                                  "100",
+                                  "$currentPoints",
                                 ),
                               ],
                             ),
@@ -124,9 +142,9 @@ class ProjectPreview extends StatelessWidget {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(color: Colors.white, width: 1.5)),
-                      child: const Center(
+                      child: Center(
                           child: Text(
-                        "3K",
+                        goal > 1000 ? "${(goal / 1000).floor()}K" : "$goal",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -170,26 +188,39 @@ class ProjectPreview extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    overView,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w500),
+                  Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: Text(
+                      overView,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  const ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: CircleAvatar(
-                      radius: 30,
-                    ),
-                    title: Text(
-                      "San Samir",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                        "Norem ipsum dolor sit amet, consectetur adipiscing elit."),
+                  FutureBuilder(
+                    future: FirebaseFirestore.instance
+                        .collection("Users")
+                        .doc(uid)
+                        .get(),
+                    builder: (context, snapshot) =>
+                        snapshot.connectionState == ConnectionState.waiting
+                            ? SizedBox()
+                            : ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: CircleAvatar(
+                                  radius: 30,
+                                ),
+                                title: Text(
+                                  snapshot.data!["name"],
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                subtitle: Text(
+                                    "Norem ipsum dolor sit amet, consectetur adipiscing elit."),
+                              ),
                   ),
                 ],
               ),

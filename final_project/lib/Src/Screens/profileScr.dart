@@ -70,7 +70,10 @@ class ProfileScr extends StatelessWidget {
                                       height: 5,
                                     ),
                                     Text(
-                                      "Norem ipsum dolor sit amet, consectetur adipiscing elit.",
+                                      Provider.of<dataprovider>(context)
+                                          .userData!
+                                          .desc
+                                          .toString(),
                                       style: TextStyle(
                                           color: Colors.white.withOpacity(0.8),
                                           fontSize: 16),
@@ -95,14 +98,16 @@ class ProfileScr extends StatelessWidget {
                             height: heightScr(context) * 0.015,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               Text(
                                 "Goal",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Spacer(),
                               Text(
-                                "100",
+                                Provider.of<dataprovider>(
+                                  context,
+                                ).userData!.goal.toString(),
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -112,8 +117,12 @@ class ProfileScr extends StatelessWidget {
                             child: DChartSingleBar(
                               radius: BorderRadius.circular(15),
                               forgroundColor: Colors.white,
-                              value: 80,
-                              max: 100,
+                              value: Provider.of<dataprovider>(
+                                context,
+                              ).userData!.points!.toDouble(),
+                              max: Provider.of<dataprovider>(
+                                context,
+                              ).userData!.goal!.toDouble(),
                             ),
                           ),
                         ],
@@ -138,10 +147,24 @@ class ProfileScr extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              defaultShowPoints(context, 40, "Total Point"),
-                              defaultShowPoints(context, 5, "Action Completed"),
                               defaultShowPoints(
-                                  context, 25, "Supported Project"),
+                                  context,
+                                  Provider.of<dataprovider>(
+                                    context,
+                                  ).userData!.points!,
+                                  "Total Point"),
+                              defaultShowPoints(
+                                  context,
+                                  Provider.of<dataprovider>(
+                                    context,
+                                  ).userData!.actionsCompleted!,
+                                  "Action Completed"),
+                              defaultShowPoints(
+                                  context,
+                                  Provider.of<dataprovider>(
+                                    context,
+                                  ).userData!.supportedProjects!.length,
+                                  "Supported Project"),
                             ],
                           ),
                           const SizedBox(

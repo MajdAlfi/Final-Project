@@ -11,9 +11,15 @@ getCurrentUser(context) async {
         .doc(getUid())
         .get();
     final user = userModel(
-        name: userData['name'],
-        actionsCompleted: userData['ActionsCompleted'],
-        points: userData['points']);
+      name: userData['name'],
+      actionsCompleted: userData['ActionsCompleted'],
+      points: userData['points'],
+      desc: userData['description'],
+      goal: userData['goal'],
+      supportedProjects: userData['supportedProject'],
+      yourProject: userData['yourProject'],
+    );
+    print(user);
     Provider.of<dataprovider>(context, listen: false).changeUserData(user);
   }
 }

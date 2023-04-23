@@ -19,7 +19,10 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  print(
+      "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo ${FirebaseAuth.instance.currentUser}");
   FirebaseAuth.instance.currentUser != null ? null : await anonymous();
+  //anonymous();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
