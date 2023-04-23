@@ -46,7 +46,7 @@ class Leaderboard extends StatelessWidget {
                           Radius.circular(30),
                         ),
                       ),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                         "1",
                         style: TextStyle(
@@ -70,9 +70,10 @@ class Leaderboard extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 20, right: 20, top: 35),
                           itemBuilder: (context, index) => leaderboardWidget(
-                              index: index + 1,
-                              name: snapshot.data!.docs[index]["name"],
-                              pts: snapshot.data!.docs[index]["points"]),
+                                index: index + 1,
+                                name: snapshot.data!.docs[index]["name"],
+                                pts: snapshot.data!.docs[index]["points"],
+                              ),
                           separatorBuilder: (context, index) => const SizedBox(
                                 height: 10,
                               ),

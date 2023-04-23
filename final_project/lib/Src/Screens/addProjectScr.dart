@@ -166,7 +166,8 @@ class AddProject extends StatelessWidget {
                           tStamp,
                           int.parse(goalField.text),
                           locationField.text,
-                          overviewField.text);
+                          overviewField.text,
+                          context);
                       context.read<dataprovider>().changeProjectImgPath('');
                       goalField.text = '';
                       overviewField.text = '';

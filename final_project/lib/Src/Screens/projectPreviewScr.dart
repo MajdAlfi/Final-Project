@@ -1,16 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Widgets/askSupportAlert.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
+import 'package:final_project/Src/Widgets/supportButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
 import '../Services/Others/mainColor.dart';
 
 class ProjectPreview extends StatelessWidget {
   ProjectPreview(
-      {required this.title,
+      {required this.projectID,
+      required this.title,
       required this.goal,
       required this.currentPoints,
       required this.expDate,
@@ -25,6 +31,7 @@ class ProjectPreview extends StatelessWidget {
   String img;
   String expDate;
   String uid;
+  int projectID;
 
   String overView =
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla augue pretium mi mattis ultrices. Aliquam consequat iaculis ex, in cursus arcu congue at. Ut aliquam tellus erat, non convallis massa mattis ac. In hac habitasse platea dictumst. Sed vestibulum sapien eget vestibulum faucibus. Nulla odio arcu, pellentesque laoreet pellentesque eget, tincidunt ut felis. Nam vel elementum orci. Vestibulum eu elit est. Maecenas vestibulum ante at nisl mattis, nec tincidunt arcu semper. Vestibulum euismod, odio ac efficitur porta, massa nunc sagittis erat, in pretium metus sem eu nisl. Duis faucibus velit eu viverra euismod. In hac habitasse platea dictumst. Donec ac risus nisi. Aliquam et aliquam mauris. Phasellus dui mi, condimentum quis semper vel, facilisis nec eros. Etiam viverra ut nulla et sagittis. Praesent et velit dapibus, cursus elit at, vehicula tellus. Pellentesque';
@@ -61,7 +68,7 @@ class ProjectPreview extends StatelessWidget {
                             ),
                             Text(
                               "$title",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25),
                             ),
                             const SizedBox(
@@ -78,7 +85,7 @@ class ProjectPreview extends StatelessWidget {
                                 ),
                                 Text(
                                   "$location",
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
@@ -96,7 +103,7 @@ class ProjectPreview extends StatelessWidget {
                                 ),
                                 Text(
                                   "$expDate",
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
@@ -105,10 +112,10 @@ class ProjectPreview extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   "Goal",
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   "$currentPoints",
                                 ),
@@ -145,7 +152,7 @@ class ProjectPreview extends StatelessWidget {
                       child: Center(
                           child: Text(
                         goal > 1000 ? "${(goal / 1000).floor()}K" : "$goal",
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -173,7 +180,7 @@ class ProjectPreview extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  defaultElevatedButton(context, "Support Project", () {}),
+                  supportButton(projectID: projectID),
                   const SizedBox(
                     height: 20,
                   ),
@@ -206,19 +213,19 @@ class ProjectPreview extends StatelessWidget {
                         .get(),
                     builder: (context, snapshot) =>
                         snapshot.connectionState == ConnectionState.waiting
-                            ? SizedBox()
+                            ? const SizedBox()
                             : ListTile(
                                 contentPadding: EdgeInsets.zero,
-                                leading: CircleAvatar(
+                                leading: const CircleAvatar(
                                   radius: 30,
                                 ),
                                 title: Text(
                                   snapshot.data!["name"],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                subtitle: Text(
+                                subtitle: const Text(
                                     "Norem ipsum dolor sit amet, consectetur adipiscing elit."),
                               ),
                   ),

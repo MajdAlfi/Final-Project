@@ -70,7 +70,8 @@ class ProfileScr extends StatelessWidget {
                                       height: 5,
                                     ),
                                     Text(
-                                      Provider.of<dataprovider>(context)
+                                      Provider.of<dataprovider>(context,
+                                              listen: false)
                                           .userData!
                                           .desc
                                           .toString(),

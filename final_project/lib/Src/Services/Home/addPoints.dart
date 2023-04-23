@@ -5,13 +5,21 @@ import 'package:provider/provider.dart';
 
 addPoints(int newPoints, context) async {
   final fire = FirebaseFirestore.instance;
-  final currentPoints = await fire
+  // final currentPoints = await fire
+  //     .collection('Users')
+  //     .doc(getUid())
+  //     .get()
+  //     .then((DocumentSnapshot value) => value.get('points'));
+  // int points = currentPoints + newPoints;
+  await fire
       .collection('Users')
       .doc(getUid())
-      .get()
-      .then((DocumentSnapshot value) => value.get('points'));
-  int points = currentPoints + newPoints;
-  fire.collection('Users').doc(getUid()).update({'points': points});
+      .update({'points': FieldValue.increment(newPoints)});
   Provider.of<dataprovider>(context, listen: false)
-      .changeUserDataPoints(points);
+      .changeUserDataPoints(newPoints);
+  final currentDate = DateTime.now();
+  await fire
+      .collection('Points')
+      .doc()
+      .set({"Point": newPoints, "Date": currentDate, "uid": getUid()});
 }

@@ -30,7 +30,23 @@ class dataprovider extends ChangeNotifier {
 
   changeUserDataPoints(int points) {
     if (userData != null) {
-      userData!.points = points;
+      userData!.points = userData!.points! + points;
+    }
+
+    notifyListeners();
+  }
+
+  addSupporedProjects(int pro) {
+    if (userData != null) {
+      userData!.supportedProjects!.add(pro);
+    }
+
+    notifyListeners();
+  }
+
+  addYourProjects(int pro) {
+    if (userData != null) {
+      userData!.yourProject!.add(pro);
     }
 
     notifyListeners();
@@ -38,7 +54,7 @@ class dataprovider extends ChangeNotifier {
 
   changeUserDataActionComp(int action) {
     if (userData != null) {
-      userData!.actionsCompleted = action;
+      userData!.actionsCompleted = userData!.actionsCompleted! + action;
     }
     notifyListeners();
   }

@@ -14,7 +14,8 @@ Widget defaultProject(
     int goal,
     String overview,
     String uid,
-    String location) {
+    String location,
+    int pID) {
   return GestureDetector(
     onTap: () => Navigator.push(
         context,
@@ -28,6 +29,7 @@ Widget defaultProject(
                   overView: overview,
                   uid: uid,
                   location: location,
+                  projectID: pID,
                 ))),
     child: Stack(
       alignment: AlignmentDirectional.center,
@@ -97,7 +99,7 @@ Widget defaultProject(
                           const Spacer(),
                           Row(
                             children: [
-                              Text(
+                              const Text(
                                 "Goal",
                               ),
                               Spacer(),
@@ -137,7 +139,7 @@ Widget defaultProject(
               child: Center(
                   child: Text(
                 goal > 1000 ? "${(goal / 1000).floor()}K" : "$goal",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

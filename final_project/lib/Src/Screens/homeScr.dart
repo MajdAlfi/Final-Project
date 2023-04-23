@@ -62,12 +62,8 @@ class homeScr extends StatelessWidget {
                   Positioned(
                       top: heightScr(context) * 0.125,
                       left: widthScr(context) * 0.1,
-                      child:  Text(
-                         context
-                                .watch<dataprovider>()
-                                .userData!
-                                .desc
-                                .toString(),
+                      child: Text(
+                        context.watch<dataprovider>().userData!.desc.toString(),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
@@ -214,7 +210,9 @@ class homeScr extends StatelessWidget {
                                                 snapshot.data!.docs[index]
                                                     ["uid"],
                                                 snapshot.data!.docs[index]
-                                                    ["Location"]),
+                                                    ["Location"],
+                                                snapshot.data!.docs[index]
+                                                    ["ProjectID"]),
                                         // Container(
                                         //   color: greyColor(),
                                         //   height: heightScr(context) * 0.25,

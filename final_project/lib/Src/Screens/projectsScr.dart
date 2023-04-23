@@ -64,7 +64,8 @@ class ProjectsScr extends StatelessWidget {
                                 snapshot.data!.docs[index]["Goal"],
                                 snapshot.data!.docs[index]["overview"],
                                 snapshot.data!.docs[index]["uid"],
-                                snapshot.data!.docs[index]["Location"]);
+                                snapshot.data!.docs[index]["Location"],
+                                snapshot.data!.docs[index]["ProjectID"]);
                           },
                           separatorBuilder: (context, index) => const SizedBox(
                                 height: 20,

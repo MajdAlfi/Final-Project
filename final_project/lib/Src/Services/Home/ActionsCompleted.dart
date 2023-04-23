@@ -5,16 +5,16 @@ import 'package:provider/provider.dart';
 
 actionsCompleted(int actions, context) async {
   final fire = FirebaseFirestore.instance;
-  final currentAct = await fire
+  // final currentAct = await fire
+  //     .collection('Users')
+  //     .doc(getUid())
+  //     .get()
+  //     .then((DocumentSnapshot value) => value.get('ActionsCompleted'));
+  // int actionComp = currentAct + actions;
+  await fire
       .collection('Users')
       .doc(getUid())
-      .get()
-      .then((DocumentSnapshot value) => value.get('ActionsCompleted'));
-  int actionComp = currentAct + actions;
-  fire
-      .collection('Users')
-      .doc(getUid())
-      .update({'ActionsCompleted': actionComp});
+      .update({'ActionsCompleted': FieldValue.increment(actions)});
   Provider.of<dataprovider>(context, listen: false)
-      .changeUserDataActionComp(actionComp);
+      .changeUserDataActionComp(actions);
 }
