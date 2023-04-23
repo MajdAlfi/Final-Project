@@ -17,15 +17,15 @@ uploadProject(File file, String title, Timestamp expDate, int goal,
   UploadTask upTask = ref.putData(await file.readAsBytes());
   final projectsID = await fire
       .collection('Projects')
-      .orderBy('projectID', descending: true)
-      .limit(1)
+      .orderBy('ProjectID')
+      .limitToLast(1)
       .get()
       .then((QuerySnapshot snap) =>
-          snap.docs.map((DocumentSnapshot e) => e.get('projectID')));
+          snap.docs.map((DocumentSnapshot e) => e.get('ProjectID')));
   int pID = projectsID.elementAt(0) + 1;
   upTask.whenComplete(() async {
     downloadUrl = await ref.getDownloadURL();
-    fire.collection('Projects').doc().set({
+    await fire.collection('Projects').doc().set({
       "title": title,
       "overview": overview,
       "expireDate": expDate,

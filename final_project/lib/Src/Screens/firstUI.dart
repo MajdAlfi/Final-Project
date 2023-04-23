@@ -6,12 +6,14 @@ import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Home/natureFactGet.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
+import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/showBottomSheetActionProject.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
 class firstUI extends StatefulWidget {
   firstUI({super.key});
@@ -26,17 +28,17 @@ class _firstUIState extends State<firstUI> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // FirebaseAuth.instance.currentUser != null ? null : anonymous(context);
+//    FirebaseAuth.instance.currentUser != null ? null : anonymous();
 
     // getCurrentUser(context);
     natureFactGet(context);
-
     if (anonymousCheck() == false) {
       getCurrentUser(context);
     } else {
       anonymousSaveData(context);
       natureFactGet(context);
     }
+    print("${FirebaseAuth.instance.currentUser}");
   }
 
   @override

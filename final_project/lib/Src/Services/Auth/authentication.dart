@@ -59,7 +59,10 @@ void signIn(String email, String password, BuildContext context) {
 
 Future anonymous() async {
   await auth.signInAnonymously().then((value) async {
-    FirebaseFirestore.instance.collection("Users").doc(value.user!.uid).set({
+    await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(value.user!.uid)
+        .set({
       "name": "Anonymous",
       "points": 0,
       "ActionsCompleted": 0,
@@ -72,9 +75,9 @@ Future anonymous() async {
 }
 
 Future anonymousSaveData(context) async {
-  final auth = FirebaseAuth.instance;
   final userData =
       await FirebaseFirestore.instance.collection("Users").doc(getUid()).get();
+  print('uerrr:${userData.data()}');
   final user = userModel(
     name: userData['name'],
     actionsCompleted: userData['ActionsCompleted'],
