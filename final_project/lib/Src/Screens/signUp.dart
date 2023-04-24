@@ -1,14 +1,39 @@
+import 'dart:io';
+
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
+import 'package:final_project/Src/Services/Others/greyColor.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/Src/Widgets/defaultTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
-class SignUp extends StatelessWidget {
+import '../Services/Others/dataprovider.dart';
+
+class SignUp extends StatefulWidget {
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
+
   TextEditingController nameController = TextEditingController();
+  bool passwordshow = true;
+  bool confirmPasswordshow = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<dataprovider>(context, listen: false).profileIMG = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +79,53 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   height: heightScr(context) * 0.05,
                 ),
-                const CircleAvatar(
-                  radius: 60,
-                  backgroundImage: AssetImage(
-                    "assets/images/defaultProfileImage.jpg",
-                  ),
+                Stack(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  children: [
+                    CircleAvatar(
+                      radius: 60,
+                      backgroundImage: Provider.of<dataprovider>(context)
+                                      .profileIMG !=
+                                  null &&
+                              Provider.of<dataprovider>(context).profileIMG !=
+                                  ""
+                          ? FileImage(File(
+                              Provider.of<dataprovider>(context).profileIMG!))
+                          : AssetImage(
+                              "assets/images/defaultProfileImage.jpg",
+                            ) as ImageProvider,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: mainColor(),
+                      radius: 18,
+                      child: IconButton(
+                          onPressed: () async {
+                            try {
+                              final picker = ImagePicker();
+                              final pickedFile = await picker.pickImage(
+                                source: ImageSource.gallery,
+                              );
+                              if (pickedFile != null) {
+                                CroppedFile? cropImg =
+                                    await ImageCropper.platform.cropImage(
+                                  sourcePath: pickedFile.path,
+                                );
+                                if (cropImg != null)
+                                  Provider.of<dataprovider>(context,
+                                          listen: false)
+                                      .changeProfileImgPath(cropImg.path);
+                              }
+                            } catch (e) {
+                              print(e.toString());
+                            }
+                          },
+                          icon: Icon(
+                            Icons.camera_alt,
+                            size: 18,
+                            color: Colors.white,
+                          )),
+                    )
+                  ],
                 ),
                 SizedBox(
                   height: heightScr(context) * 0.05,
@@ -82,9 +149,13 @@ class SignUp extends StatelessWidget {
                 DefaultTextField(
                   "Password",
                   Icons.password,
-                  secure: true,
+                  secure: passwordshow,
                   sufIcon: Icons.visibility_off_rounded,
-                  onSufIconTap: () {},
+                  onSufIconTap: () {
+                    setState(() {
+                      passwordshow = !passwordshow;
+                    });
+                  },
                   textController: passwordController,
                 ),
                 SizedBox(
@@ -93,9 +164,14 @@ class SignUp extends StatelessWidget {
                 DefaultTextField(
                   "Confirm Password",
                   Icons.password,
-                  secure: true,
+                  textController: confirmPassword,
+                  secure: confirmPasswordshow,
                   sufIcon: Icons.visibility_off_rounded,
-                  onSufIconTap: () {},
+                  onSufIconTap: () {
+                    setState(() {
+                      confirmPasswordshow = !confirmPasswordshow;
+                    });
+                  },
                 ),
                 SizedBox(
                   height: heightScr(context) * 0.02,
@@ -104,11 +180,25 @@ class SignUp extends StatelessWidget {
                   context,
                   "Sign UP",
                   () {
-                    register(
-                        emailController.text.toString(),
-                        passwordController.text.toString(),
-                        nameController.text.toString(),
-                        context);
+                    if (confirmPassword.text == passwordController.text) {
+                      register(
+                          emailController.text.toString(),
+                          passwordController.text.toString(),
+                          nameController.text.toString(),
+                          File(Provider.of<dataprovider>(context, listen: false)
+                              .profileIMG!),
+                          context);
+                    } else {
+                      Fluttertoast.showToast(
+                          msg:
+                              "It looks like your password confirmation doesn't match. Please try again",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.grey[600],
+                          textColor: Colors.white,
+                          fontSize: 16.0);
+                    }
                   },
                 ),
                 Align(

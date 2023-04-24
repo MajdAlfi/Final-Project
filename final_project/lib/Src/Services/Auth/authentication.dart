@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Screens/firstUI.dart';
@@ -6,20 +8,28 @@ import 'package:final_project/Src/Screens/loginScr.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../Projects/uploadProject.dart';
+
 FirebaseAuth auth = FirebaseAuth.instance;
 
-void register(
-    String email, String password, String name, BuildContext context) {
+Future<void> register(String email, String password, String name, File file,
+    BuildContext context) async {
+  final store = FirebaseStorage.instance;
+  String downloadUrl = '';
+  final ref = store.ref().child('profile_pics/');
+  UploadTask upTask = ref.putData(await file.readAsBytes());
+
   auth
       .createUserWithEmailAndPassword(
         email: email,
         password: password,
       )
-      .then((value) => FirebaseFirestore.instance
+      .then((value) async => FirebaseFirestore.instance
               .collection("Users")
               .doc(value.user!.uid)
               .set({
@@ -29,9 +39,19 @@ void register(
             "description": "description",
             "goal": 10,
             "yourProject": [].toList(),
-            "supportedProject": [].toList()
+            "supportedProject": [].toList(),
+            "profileIMG": await ref.getDownloadURL()
           }))
-      .then((value) => Navigator.pushReplacement(
+      .catchError((e) {
+    Fluttertoast.showToast(
+        msg: "Incorrect email or password. Please try again.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey[600],
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }).then((value) => Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => firstUI())));
 }
 
@@ -69,7 +89,8 @@ Future anonymous() async {
       "description": "description",
       "goal": 10,
       "yourProject": [].toList(),
-      "supportedProject": [].toList()
+      "supportedProject": [].toList(),
+      "profileIMG": ""
     });
   });
 }
@@ -79,13 +100,13 @@ Future anonymousSaveData(context) async {
       await FirebaseFirestore.instance.collection("Users").doc(getUid()).get();
   print('uerrr:${userData.data()}');
   final user = userModel(
-    name: userData['name'],
-    actionsCompleted: userData['ActionsCompleted'],
-    points: userData['points'],
-    desc: userData['description'],
-    goal: userData['goal'],
-    supportedProjects: userData['supportedProject'],
-    yourProject: userData['yourProject'],
-  );
+      name: userData['name'],
+      actionsCompleted: userData['ActionsCompleted'],
+      points: userData['points'],
+      desc: userData['description'],
+      goal: userData['goal'],
+      supportedProjects: userData['supportedProject'],
+      yourProject: userData['yourProject'],
+      profileIMG: userData['profileIMG']);
   Provider.of<dataprovider>(context, listen: false).changeUserData(user);
 }

@@ -12,6 +12,8 @@ class dataprovider extends ChangeNotifier {
   List natureFact = [];
   userModel? userData;
   String? projectImgPath;
+  String? profileIMG;
+
   DateRangePickerController? datePickerProject;
   changeIsSelectedGroupBtn(bool isSelected, int index) {
     btnList.elementAt(index).isSeleccted = isSelected;
@@ -69,6 +71,13 @@ class dataprovider extends ChangeNotifier {
     notifyListeners();
   }
 
+  changeProfileImgPath(String img) {
+    print(img);
+    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo");
+    profileIMG = img;
+    notifyListeners();
+  }
+
   signOut(context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     _auth.signOut().then((value) async {
@@ -78,6 +87,7 @@ class dataprovider extends ChangeNotifier {
             builder: (context) => firstUI(),
           )));
       userData = userModel();
+      profileIMG = "";
       anonymousSaveData(context);
     });
 

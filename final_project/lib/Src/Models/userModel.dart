@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:collection/collection.dart';
-
 class userModel {
   int? points; //
   String? name; //
@@ -11,6 +9,7 @@ class userModel {
   String? desc; //
   int? goal; //
   int? actionsCompleted; //
+  String? profileIMG;
   userModel({
     this.points,
     this.name,
@@ -19,16 +18,18 @@ class userModel {
     this.desc,
     this.goal,
     this.actionsCompleted,
+    this.profileIMG,
   });
 
   userModel copyWith({
     int? points,
     String? name,
-    List<int>? supportedProjects,
-    List<int>? yourProject,
+    List? supportedProjects,
+    List? yourProject,
     String? desc,
     int? goal,
     int? actionsCompleted,
+    String? profileIMG,
   }) {
     return userModel(
       points: points ?? this.points,
@@ -38,6 +39,7 @@ class userModel {
       desc: desc ?? this.desc,
       goal: goal ?? this.goal,
       actionsCompleted: actionsCompleted ?? this.actionsCompleted,
+      profileIMG: profileIMG ?? this.profileIMG,
     );
   }
 
@@ -50,6 +52,7 @@ class userModel {
       'desc': desc,
       'goal': goal,
       'actionsCompleted': actionsCompleted,
+      'profileIMG': profileIMG,
     };
   }
 
@@ -68,6 +71,8 @@ class userModel {
       actionsCompleted: map['actionsCompleted'] != null
           ? map['actionsCompleted'] as int
           : null,
+      profileIMG:
+          map['profileIMG'] != null ? map['profileIMG'] as String : null,
     );
   }
 
@@ -78,21 +83,21 @@ class userModel {
 
   @override
   String toString() {
-    return 'userModel(points: $points, name: $name, supportedProjects: $supportedProjects, yourProject: $yourProject, desc: $desc, goal: $goal, actionsCompleted: $actionsCompleted)';
+    return 'userModel(points: $points, name: $name, supportedProjects: $supportedProjects, yourProject: $yourProject, desc: $desc, goal: $goal, actionsCompleted: $actionsCompleted, profileIMG: $profileIMG)';
   }
 
   @override
   bool operator ==(covariant userModel other) {
     if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
 
     return other.points == points &&
         other.name == name &&
-        listEquals(other.supportedProjects, supportedProjects) &&
-        listEquals(other.yourProject, yourProject) &&
+        other.supportedProjects == supportedProjects &&
+        other.yourProject == yourProject &&
         other.desc == desc &&
         other.goal == goal &&
-        other.actionsCompleted == actionsCompleted;
+        other.actionsCompleted == actionsCompleted &&
+        other.profileIMG == profileIMG;
   }
 
   @override
@@ -103,6 +108,7 @@ class userModel {
         yourProject.hashCode ^
         desc.hashCode ^
         goal.hashCode ^
-        actionsCompleted.hashCode;
+        actionsCompleted.hashCode ^
+        profileIMG.hashCode;
   }
 }

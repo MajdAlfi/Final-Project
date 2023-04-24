@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Screens/supportedProjects.dart';
 import 'package:final_project/Src/Screens/yourProjectsScr.dart';
@@ -47,8 +49,24 @@ class ProfileScr extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: 45,
+                                backgroundImage:
+                                    Provider.of<dataprovider>(context)
+                                                    .userData!
+                                                    .profileIMG! !=
+                                                "" &&
+                                            Provider.of<dataprovider>(context)
+                                                    .userData!
+                                                    .profileIMG! !=
+                                                null
+                                        ? NetworkImage(
+                                            Provider.of<dataprovider>(context)
+                                                .userData!
+                                                .profileIMG!)
+                                        : AssetImage(
+                                            "assets/images/defaultProfileImage.jpg",
+                                          ) as ImageProvider,
                               ),
                               const SizedBox(
                                 width: 10,

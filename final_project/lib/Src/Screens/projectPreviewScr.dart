@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
@@ -129,8 +131,8 @@ class ProjectPreview extends StatelessWidget {
                               child: DChartSingleBar(
                                 radius: BorderRadius.circular(15),
                                 forgroundColor: mainColor(),
-                                value: 80,
-                                max: 100,
+                                value: currentPoints.toDouble(),
+                                max: goal.toDouble(),
                               ),
                             ),
                           ],
@@ -211,23 +213,29 @@ class ProjectPreview extends StatelessWidget {
                         .collection("Users")
                         .doc(uid)
                         .get(),
-                    builder: (context, snapshot) =>
-                        snapshot.connectionState == ConnectionState.waiting
-                            ? const SizedBox()
-                            : ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                leading: const CircleAvatar(
-                                  radius: 30,
-                                ),
-                                title: Text(
-                                  snapshot.data!["name"],
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                subtitle: const Text(
-                                    "Norem ipsum dolor sit amet, consectetur adipiscing elit."),
-                              ),
+                    builder: (context, snapshot) => snapshot.connectionState ==
+                            ConnectionState.waiting
+                        ? const SizedBox()
+                        : ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: CircleAvatar(
+                              radius: 30,
+                              backgroundImage: Provider.of<dataprovider>(
+                                              context)
+                                          .profileIMG !=
+                                      null
+                                  ? NetworkImage(snapshot.data!["profileIMG"])
+                                  : AssetImage(
+                                      "assets/images/defaultProfileImage.jpg",
+                                    ) as ImageProvider,
+                            ),
+                            title: Text(
+                              snapshot.data!["name"],
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            ),
+                            subtitle: Text(snapshot.data!["description"]),
+                          ),
                   ),
                 ],
               ),
