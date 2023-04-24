@@ -1,4 +1,6 @@
 import 'package:d_chart/d_chart.dart';
+import 'package:final_project/Src/Screens/supportedProjects.dart';
+import 'package:final_project/Src/Screens/yourProjectsScr.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
@@ -176,13 +178,29 @@ class ProfileScr extends StatelessWidget {
                             children: [
                               Expanded(
                                   child: defaultElevatedButton(
-                                      context, "Your Projects", () {})),
+                                      context, "Your Projects", () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => yourProject(
+                                                Provider.of<dataprovider>(
+                                              context,
+                                            ).userData!.yourProject!)));
+                              })),
                               const SizedBox(
                                 width: 10,
                               ),
                               Expanded(
                                   child: defaultElevatedButton(
-                                      context, "Supported Projects", () {})),
+                                      context, "Supported Projects", () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SupportedProject(
+                                                Provider.of<dataprovider>(
+                                              context,
+                                            ).userData!.supportedProjects!)));
+                              })),
                             ],
                           ),
                           TableCalendar(
