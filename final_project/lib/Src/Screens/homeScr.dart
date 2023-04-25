@@ -64,7 +64,7 @@ class homeScr extends StatelessWidget {
                       left: widthScr(context) * 0.1,
                       child: Text(
                         context.watch<dataprovider>().userData!.desc.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 17,
                             fontWeight: FontWeight.w300),
@@ -82,13 +82,7 @@ class homeScr extends StatelessWidget {
                           Text(
                             context
                                 .watch<dataprovider>()
-                                .listPoints
-                                .where((element) =>
-                                    DateFormat('dd MMM \n yyyy')
-                                        .format(element.gainedOn) ==
-                                    DateFormat('dd MMM \n yyyy')
-                                        .format(DateTime.now()))
-                                .elementAt(0)
+                                .userData!
                                 .points
                                 .toString(),
                             style: const TextStyle(

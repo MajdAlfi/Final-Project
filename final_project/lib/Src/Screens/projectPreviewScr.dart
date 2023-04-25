@@ -209,14 +209,23 @@ class ProjectPreview extends StatelessWidget {
                     height: 20,
                   ),
                   FutureBuilder(
-                    future: FirebaseFirestore.instance
-                        .collection("Users")
-                        .doc(uid)
-                        .get(),
-                    builder: (context, snapshot) => snapshot.connectionState ==
-                            ConnectionState.waiting
-                        ? const SizedBox()
-                        : ListTile(
+                      future: FirebaseFirestore.instance
+                          .collection("Users")
+                          .doc(uid)
+                          .get(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.done) {
+                          return ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: CircleAvatar(
                               radius: 30,
@@ -225,7 +234,7 @@ class ProjectPreview extends StatelessWidget {
                                           .profileIMG !=
                                       null
                                   ? NetworkImage(snapshot.data!["profileIMG"])
-                                  : AssetImage(
+                                  : const AssetImage(
                                       "assets/images/defaultProfileImage.jpg",
                                     ) as ImageProvider,
                             ),
@@ -235,8 +244,10 @@ class ProjectPreview extends StatelessWidget {
                                   fontSize: 18, fontWeight: FontWeight.w500),
                             ),
                             subtitle: Text(snapshot.data!["description"]),
-                          ),
-                  ),
+                          );
+                        }
+                        return Text('err');
+                      }),
                 ],
               ),
             )

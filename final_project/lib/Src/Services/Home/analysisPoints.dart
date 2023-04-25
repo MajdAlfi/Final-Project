@@ -27,7 +27,7 @@ Future analysisPoints(context) async {
   listPoints.sort(
     (a, b) => b.gainedOn.compareTo(a.gainedOn),
   );
-  print(listPoints.first.gainedOn);
+  // print(listPoints.first.gainedOn);
   Provider.of<dataprovider>(context, listen: false)
       .changeListPoints(listPoints);
 }

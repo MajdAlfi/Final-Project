@@ -1,23 +1,15 @@
-import 'dart:io';
-
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Screens/supportedProjects.dart';
 import 'package:final_project/Src/Screens/yourProjectsScr.dart';
 import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
-import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
-import 'package:final_project/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../Widgets/defaultShowPoints.dart';
 
@@ -33,7 +25,9 @@ class _ProfileScrState extends State<ProfileScr> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    analysisPoints(context);
+    analysisPoints(context).then((_) {
+      setState(() {});
+    });
   }
 
   @override
@@ -64,6 +58,7 @@ class _ProfileScrState extends State<ProfileScr> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CircleAvatar(
+                                backgroundColor: Colors.transparent,
                                 radius: 45,
                                 backgroundImage:
                                     Provider.of<dataprovider>(context)
@@ -78,7 +73,7 @@ class _ProfileScrState extends State<ProfileScr> {
                                             Provider.of<dataprovider>(context)
                                                 .userData!
                                                 .profileIMG!)
-                                        : AssetImage(
+                                        : const AssetImage(
                                             "assets/images/defaultProfileImage.jpg",
                                           ) as ImageProvider,
                               ),
@@ -152,9 +147,27 @@ class _ProfileScrState extends State<ProfileScr> {
                             child: DChartSingleBar(
                               radius: BorderRadius.circular(15),
                               forgroundColor: Colors.white,
-                              value: Provider.of<dataprovider>(
-                                context,
-                              ).userData!.points!.toDouble(),
+                              value: (context
+                                      .watch<dataprovider>()
+                                      .listPoints
+                                      .where((element) =>
+                                          DateFormat('dd MMM \n yyyy')
+                                              .format(element.gainedOn) ==
+                                          DateFormat('dd MMM \n yyyy')
+                                              .format(DateTime.now()))
+                                      .isNotEmpty)
+                                  ? context
+                                      .watch<dataprovider>()
+                                      .listPoints
+                                      .where((element) =>
+                                          DateFormat('dd MMM \n yyyy')
+                                              .format(element.gainedOn) ==
+                                          DateFormat('dd MMM \n yyyy')
+                                              .format(DateTime.now()))
+                                      .elementAt(0)
+                                      .points
+                                      .toDouble()
+                                  : 0,
                               max: Provider.of<dataprovider>(
                                 context,
                               ).userData!.goal!.toDouble(),
@@ -240,51 +253,85 @@ class _ProfileScrState extends State<ProfileScr> {
                           //   lastDay: DateTime.utc(2030, 3, 14),
                           //   focusedDay: DateTime.now(),
                           // ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Container(
                               height: 150,
                               child: (context
-                                      .watch<dataprovider>()
-                                      .listPoints
-                                      .isEmpty)
-                                  ? Container(
-                                      height: heightScr(context) * 0.6,
-                                      width: widthScr(context),
-                                      child: const Center(
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                    )
-                                  : DChartBar(
-                                      animate: true,
-                                      data: [
-                                        {
-                                          'id': 'Bar',
-                                          'data': List.generate(
-                                            (context
+                                          .watch<dataprovider>()
+                                          .listPoints
+                                          .isEmpty &&
+                                      context
+                                              .read<dataprovider>()
+                                              .userData!
+                                              .points ==
+                                          0)
+                                  ? (context
+                                              .read<dataprovider>()
+                                              .userData!
+                                              .points ==
+                                          0)
+                                      ? const Center(
+                                          child: Text(
+                                            'Please gain points to show analysis!',
+                                            style: TextStyle(
+                                                color: Colors.black54,
+                                                fontSize: 15),
+                                          ),
+                                        )
+                                      : Container(
+                                          height: heightScr(context) * 0.6,
+                                          width: widthScr(context),
+                                          child: const Center(
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                        )
+                                  : Container(
+                                      height: heightScr(context) * 0.2,
+                                      width: widthScr(context) * 0.9,
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(30)),
+                                          color: greyColor()),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: DChartBar(
+                                          animate: true,
+                                          data: [
+                                            {
+                                              'id': 'Bar',
+                                              'data': List.generate(
+                                                (context
+                                                            .read<
+                                                                dataprovider>()
+                                                            .listPoints
+                                                            .length >
+                                                        7)
+                                                    ? 7
+                                                    : context
                                                         .read<dataprovider>()
                                                         .listPoints
-                                                        .length >
-                                                    7)
-                                                ? 7
-                                                : context
-                                                    .read<dataprovider>()
-                                                    .listPoints
-                                                    .length,
-                                            (index) => {
-                                              'domain':
-                                                  "${DateFormat('dd MMM \n yyyy').format(context.read<dataprovider>().listPoints.elementAt(index).gainedOn)}",
-                                              'measure': context
-                                                  .read<dataprovider>()
-                                                  .listPoints
-                                                  .elementAt(index)
-                                                  .points
+                                                        .length,
+                                                (index) => {
+                                                  'domain':
+                                                      "${DateFormat('dd MMM \n yyyy').format(context.read<dataprovider>().listPoints.elementAt(index).gainedOn)}",
+                                                  'measure': context
+                                                      .read<dataprovider>()
+                                                      .listPoints
+                                                      .elementAt(index)
+                                                      .points
+                                                },
+                                              )
                                             },
-                                          )
-                                        },
-                                      ],
-                                      barColor: (Map<String, dynamic> barData,
-                                          int? index, String id) {
-                                        return Colors.green;
-                                      },
+                                          ],
+                                          barColor:
+                                              (Map<String, dynamic> barData,
+                                                  int? index, String id) {
+                                            return Colors.green;
+                                          },
+                                        ),
+                                      ),
                                     ))
                         ],
                       ),

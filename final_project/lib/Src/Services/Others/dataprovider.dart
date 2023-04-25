@@ -3,6 +3,7 @@ import 'package:final_project/Src/Models/pointsModel.dart';
 import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
+import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/actionButtonList.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,7 @@ class dataprovider extends ChangeNotifier {
 
   changeProfileImgPath(String img) {
     print(img);
-    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo");
+    // print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo");
     profileIMG = img;
     notifyListeners();
   }
@@ -106,7 +107,7 @@ class dataprovider extends ChangeNotifier {
           )));
       userData = userModel();
       profileIMG = "";
-      anonymousSaveData(context);
+      listPoints.clear();
     });
 
     notifyListeners();

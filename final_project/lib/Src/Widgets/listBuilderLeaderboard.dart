@@ -27,6 +27,7 @@ class _listBuilderLeaderBoardState extends State<listBuilderLeaderBoard> {
         future: FirebaseFirestore.instance
             .collection("Users")
             .orderBy("points", descending: true)
+            .limit(20)
             .get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

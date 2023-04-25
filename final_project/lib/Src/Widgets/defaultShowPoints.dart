@@ -23,17 +23,21 @@ Container defaultShowPoints(BuildContext context, int point, String label) {
           Expanded(
             child: Text(
               "$point",
-              style: const TextStyle(
-                fontSize: 20,
+              style: TextStyle(
+                fontSize: (point > 1000)
+                    ? 15
+                    : (point > 100)
+                        ? 18
+                        : 20,
               ),
               textAlign: TextAlign.center,
             ),
           ),
           Expanded(
-              flex: 2,
+              flex: 1,
               child: Text(
                 "$label",
-                style: const TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 10),
                 textAlign: TextAlign.center,
               ))
         ],

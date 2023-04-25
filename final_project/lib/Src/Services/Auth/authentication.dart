@@ -37,7 +37,7 @@ Future<void> register(String email, String password, String name, File file,
             "points": 0,
             "ActionsCompleted": 0,
             "description": "description",
-            "goal": 10,
+            "goal": 100,
             "yourProject": [].toList(),
             "supportedProject": [].toList(),
             "profileIMG": await ref.getDownloadURL()
@@ -87,7 +87,7 @@ Future anonymous() async {
       "points": 0,
       "ActionsCompleted": 0,
       "description": "description",
-      "goal": 10,
+      "goal": 100,
       "yourProject": [].toList(),
       "supportedProject": [].toList(),
       "profileIMG": ""
