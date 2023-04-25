@@ -19,14 +19,25 @@ FirebaseAuth auth = FirebaseAuth.instance;
 
 Future<void> register(String email, String password, String name, File file,
     BuildContext context) async {
+  final fire = FirebaseFirestore.instance;
   final oldUser = Provider.of<dataprovider>(context, listen: false).userData;
   final store = FirebaseStorage.instance;
   String downloadUrl = '';
   final ref = store.ref().child('profile_pics/');
   UploadTask upTask = ref.putData(await file.readAsBytes());
   print(getUid());
-  await FirebaseFirestore.instance.collection("Users").doc(getUid()).delete();
-  auth
+  final docIDs = await fire
+      .collection('Points')
+      .where('uid', isEqualTo: getUid())
+      .get()
+      .then((QuerySnapshot snap) => snap.docs.map((DocumentSnapshot docSnap) {
+            if (docSnap.exists) {
+              return docSnap.get('docID');
+            }
+          }));
+  await fire.collection("Users").doc(getUid()).delete();
+
+  await auth
       .createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -53,10 +64,17 @@ Future<void> register(String email, String password, String name, File file,
         backgroundColor: Colors.grey[600],
         textColor: Colors.white,
         fontSize: 16.0);
-  }).then((value) => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) {
-            return firstUI();
-          })));
+  }).then((_) {
+    for (int i = 0; i < docIDs.length; i++) {
+      fire
+          .collection('Points')
+          .doc(docIDs.elementAt(i))
+          .update({"uid": getUid()});
+    }
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+      return firstUI();
+    }));
+  });
 }
 
 void signIn(String email, String password, BuildContext context) {

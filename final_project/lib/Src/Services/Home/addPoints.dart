@@ -19,10 +19,13 @@ addPoints(int newPoints, context) async {
   Provider.of<dataprovider>(context, listen: false)
       .changeUserDataPoints(newPoints);
   final currentDate = DateTime.now();
-  await fire
-      .collection('Points')
-      .doc()
-      .set({"Point": newPoints, "Date": currentDate, "uid": getUid()});
+  final docID = await fire.collection('Points').doc().id;
+  await fire.collection('Points').doc(docID).set({
+    "Point": newPoints,
+    "Date": currentDate,
+    "uid": getUid(),
+    "docID": docID
+  });
   Provider.of<dataprovider>(context, listen: false)
       .addListPoints(pointsModel(points: newPoints, gainedOn: currentDate));
 }
