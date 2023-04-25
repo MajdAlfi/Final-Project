@@ -1,4 +1,5 @@
 import 'package:final_project/Src/Models/actionButtonListType.dart';
+import 'package:final_project/Src/Models/pointsModel.dart';
 import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
@@ -8,8 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class dataprovider extends ChangeNotifier {
+  int rank = 0;
   List<actionButtonListType> btnList = actionButtonList();
   List natureFact = [];
+  List listPoints = [];
   userModel? userData;
   String? projectImgPath;
   String? profileIMG;
@@ -25,8 +28,23 @@ class dataprovider extends ChangeNotifier {
     notifyListeners();
   }
 
+  changeListPoints(List<pointsModel> pts) {
+    listPoints = pts;
+    notifyListeners();
+  }
+
+  addListPoints(pointsModel pts) {
+    listPoints.add(pts);
+    notifyListeners();
+  }
+
   changeUserData(userModel user) {
     userData = user;
+    notifyListeners();
+  }
+
+  changeRank(int leader) {
+    rank = leader;
     notifyListeners();
   }
 

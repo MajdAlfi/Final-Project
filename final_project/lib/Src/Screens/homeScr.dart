@@ -82,7 +82,13 @@ class homeScr extends StatelessWidget {
                           Text(
                             context
                                 .watch<dataprovider>()
-                                .userData!
+                                .listPoints
+                                .where((element) =>
+                                    DateFormat('dd MMM \n yyyy')
+                                        .format(element.gainedOn) ==
+                                    DateFormat('dd MMM \n yyyy')
+                                        .format(DateTime.now()))
+                                .elementAt(0)
                                 .points
                                 .toString(),
                             style: const TextStyle(

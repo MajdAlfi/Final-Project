@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/Src/Models/pointsModel.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:provider/provider.dart';
@@ -22,4 +23,6 @@ addPoints(int newPoints, context) async {
       .collection('Points')
       .doc()
       .set({"Point": newPoints, "Date": currentDate, "uid": getUid()});
+  Provider.of<dataprovider>(context, listen: false)
+      .addListPoints(pointsModel(points: newPoints, gainedOn: currentDate));
 }

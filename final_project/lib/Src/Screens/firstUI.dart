@@ -4,6 +4,7 @@ import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Screens/projectsScr.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
+import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Home/natureFactGet.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
@@ -39,6 +40,7 @@ class _firstUIState extends State<firstUI> {
       natureFactGet(context);
     }
     print("${FirebaseAuth.instance.currentUser}");
+    analysisPoints(context);
   }
 
   @override

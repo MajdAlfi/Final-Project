@@ -1,5 +1,6 @@
 import 'package:final_project/Src/Services/Home/ActionsCompleted.dart';
 import 'package:final_project/Src/Services/Home/addPoints.dart';
+import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
@@ -44,6 +45,7 @@ class doneAction extends StatelessWidget {
               Provider.of<dataprovider>(context, listen: false)
                   .changeIsSelectedGroupBtn(false, i);
             }
+            await analysisPoints(context);
             Navigator.pop(context);
             if (auth.currentUser!.isAnonymous) askLoginDialog(context);
           },
