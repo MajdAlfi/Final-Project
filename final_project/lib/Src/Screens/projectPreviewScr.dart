@@ -230,9 +230,14 @@ class ProjectPreview extends StatelessWidget {
                             leading: CircleAvatar(
                               radius: 30,
                               backgroundImage: Provider.of<dataprovider>(
-                                              context)
-                                          .profileIMG !=
-                                      null
+                                                  context)
+                                              .userData!
+                                              .profileIMG !=
+                                          null &&
+                                      Provider.of<dataprovider>(context)
+                                              .userData!
+                                              .profileIMG !=
+                                          ""
                                   ? NetworkImage(snapshot.data!["profileIMG"])
                                   : const AssetImage(
                                       "assets/images/defaultProfileImage.jpg",

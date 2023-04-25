@@ -1,6 +1,7 @@
 import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Screens/supportedProjects.dart';
 import 'package:final_project/Src/Screens/yourProjectsScr.dart';
+import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
@@ -221,19 +222,21 @@ class _ProfileScrState extends State<ProfileScr> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Expanded(
-                                  child: defaultElevatedButton(
-                                      context, "Your Projects", () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => yourProject(
-                                                Provider.of<dataprovider>(
-                                              context,
-                                            ).userData!.yourProject!)));
-                              })),
-                              const SizedBox(
-                                width: 10,
+                              !anonymousCheck()
+                                  ? Expanded(
+                                      child: defaultElevatedButton(
+                                          context, "Your Projects", () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => yourProject(
+                                                      Provider.of<dataprovider>(
+                                                    context,
+                                                  ).userData!.yourProject!)));
+                                    }))
+                                  : SizedBox(),
+                              SizedBox(
+                                width: anonymousCheck() ? 0 : 10,
                               ),
                               Expanded(
                                   child: defaultElevatedButton(

@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import '../Services/Others/Width&Height.dart';
 import '../Services/Others/mainColor.dart';
 
-Future askLoginDialog(context) {
+Future askLoginDialog(context, String ask) {
   return showDialog(
       context: context,
       builder: (context) => AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30))),
             title: Icon(Icons.warning),
-            content: const Text(
-                'Your currently not logged in do you want to login to store your progress?'),
+            content: Text(
+              '$ask',
+              textAlign: TextAlign.center,
+            ),
             actions: [
               TextButton(
                   onPressed: () {

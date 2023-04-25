@@ -19,11 +19,13 @@ FirebaseAuth auth = FirebaseAuth.instance;
 
 Future<void> register(String email, String password, String name, File file,
     BuildContext context) async {
+  final oldUser = Provider.of<dataprovider>(context, listen: false).userData;
   final store = FirebaseStorage.instance;
   String downloadUrl = '';
   final ref = store.ref().child('profile_pics/');
   UploadTask upTask = ref.putData(await file.readAsBytes());
-
+  print(getUid());
+  await FirebaseFirestore.instance.collection("Users").doc(getUid()).delete();
   auth
       .createUserWithEmailAndPassword(
         email: email,
@@ -34,12 +36,12 @@ Future<void> register(String email, String password, String name, File file,
               .doc(value.user!.uid)
               .set({
             "name": name,
-            "points": 0,
-            "ActionsCompleted": 0,
+            "points": oldUser!.points,
+            "ActionsCompleted": oldUser.actionsCompleted,
             "description": "description",
-            "goal": 100,
-            "yourProject": [].toList(),
-            "supportedProject": [].toList(),
+            "goal": oldUser.goal,
+            "yourProject": oldUser.yourProject,
+            "supportedProject": oldUser.supportedProjects,
             "profileIMG": await ref.getDownloadURL()
           }))
       .catchError((e) {
@@ -51,8 +53,10 @@ Future<void> register(String email, String password, String name, File file,
         backgroundColor: Colors.grey[600],
         textColor: Colors.white,
         fontSize: 16.0);
-  }).then((value) => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => firstUI())));
+  }).then((value) => Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) {
+            return firstUI();
+          })));
 }
 
 void signIn(String email, String password, BuildContext context) {

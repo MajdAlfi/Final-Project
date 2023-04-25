@@ -30,6 +30,7 @@ class _SignUpState extends State<SignUp> {
   bool confirmPasswordshow = true;
   @override
   void initState() {
+    print(Provider.of<dataprovider>(context, listen: false).userData);
     // TODO: implement initState
     super.initState();
     Provider.of<dataprovider>(context, listen: false).profileIMG = "";

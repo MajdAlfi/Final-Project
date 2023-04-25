@@ -47,7 +47,9 @@ class doneAction extends StatelessWidget {
             }
             await analysisPoints(context);
             Navigator.pop(context);
-            if (auth.currentUser!.isAnonymous) askLoginDialog(context);
+            if (auth.currentUser!.isAnonymous)
+              askLoginDialog(context,
+                  "Your currently not logged in do you want to login to store your progress?");
           },
           child: const Text(
             'Done',

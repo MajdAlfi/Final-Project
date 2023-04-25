@@ -16,6 +16,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 
+import '../Services/Auth/getCurrentUser.dart';
+
 class showBottomSheetActionProject extends StatelessWidget {
   const showBottomSheetActionProject({super.key});
 
@@ -94,9 +96,16 @@ class showBottomSheetActionProject extends StatelessWidget {
                     color: Colors.white),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AddProject()));
+                    if (anonymousCheck()) {
+                      askLoginDialog(context,
+                          "Sorry, you need to log in to upload a project");
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddProject()));
+                    }
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
