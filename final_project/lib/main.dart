@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Screens/firstUi.dart';
 import 'package:final_project/Src/Screens/homeScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
+import 'package:final_project/Src/Screens/onBoarding.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
