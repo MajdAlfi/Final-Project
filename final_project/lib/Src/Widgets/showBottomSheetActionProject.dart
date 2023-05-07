@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Screens/addProjectScr.dart';
 import 'package:final_project/Src/Screens/loginScr.dart';
 import 'package:final_project/Src/Services/Home/addPoints.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Widgets/cancelAction.dart';
 import 'package:final_project/Src/Widgets/doneAction.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
@@ -42,6 +43,9 @@ class showBottomSheetActionProject extends StatelessWidget {
                     color: Colors.white),
                 child: GestureDetector(
                   onTap: () {
+                    Provider.of<dataprovider>(context, listen: false)
+                        .fillAction(
+                            Provider.of<languages>(context, listen: false));
                     Navigator.pop(context);
                     showModalBottomSheet(
                         backgroundColor: Colors.transparent,
@@ -75,9 +79,9 @@ class showBottomSheetActionProject extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        'Add Action',
+                        Provider.of<languages>(context).tAddAction(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
@@ -97,8 +101,10 @@ class showBottomSheetActionProject extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     if (anonymousCheck()) {
-                      askLoginDialog(context,
-                          "Sorry, you need to log in to upload a project");
+                      askLoginDialog(
+                          context,
+                          Provider.of<languages>(context, listen: false)
+                              .tSorry());
                     } else {
                       Navigator.pop(context);
                       Navigator.push(
@@ -110,9 +116,9 @@ class showBottomSheetActionProject extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        'Add Project',
+                        Provider.of<languages>(context).tAddProject(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),

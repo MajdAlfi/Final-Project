@@ -187,10 +187,10 @@ class ProjectPreview extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Align(
+                  Align(
                     alignment: AlignmentDirectional.topStart,
                     child: Text(
-                      "Overview",
+                      Provider.of<languages>(context).tOverView(),
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                     ),

@@ -1,4 +1,6 @@
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Services/Others/Width&Height.dart';
 import '../Services/Others/mainColor.dart';
@@ -19,16 +21,15 @@ Future askLoginDialog(context, String ask) {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text(
-                    'skip',
+                  child: Text(
+                    Provider.of<languages>(context).tSkip(),
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w400),
                   )),
               Container(
                   height: heightScr(context) * 0.045,
-                  width: widthScr(context) * 0.28,
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       color: mainColor()),
@@ -37,12 +38,13 @@ Future askLoginDialog(context, String ask) {
                       Navigator.pop(context);
                       Navigator.pushNamed(context, '/loginScr');
                     },
-                    child: const Text(
-                      'Login',
+                    child: Text(
+                      Provider.of<languages>(context).tLogin(),
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700),
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ))
             ],

@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -53,7 +54,10 @@ class showDatePickerContainer extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Icon(Icons.date_range), Text('Select Date')],
+          children: [
+            Icon(Icons.date_range),
+            Text(Provider.of<languages>(context).tSelectDate())
+          ],
         ),
       ),
     );

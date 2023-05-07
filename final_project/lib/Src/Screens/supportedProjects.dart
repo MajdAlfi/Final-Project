@@ -6,12 +6,14 @@ import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/defaultProject.dart';
 
@@ -60,7 +62,8 @@ class SupportedProject extends StatelessWidget {
                         : supportedProjects.isEmpty
                             ? Container(
                                 height: heightScr(context) * 0.85,
-                                child: Text("You didnt support any projects"),
+                                child: Text(Provider.of<languages>(context)
+                                    .tYouDidntSupport()),
                               )
                             : SizedBox(
                                 height: heightScr(context) * 0.85,

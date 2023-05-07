@@ -121,6 +121,7 @@ class languages with ChangeNotifier {
   }
 
   String tReducePaper() {
+    print(selectedLanguage);
     if (selectedLanguage == "Arabic") {
       return "تقليل إهدار الورق";
     } else if (selectedLanguage == "Kurdish") {
@@ -217,5 +218,266 @@ class languages with ChangeNotifier {
       return "نمرە";
     } else
       return "Points";
+  }
+
+  String tDone() {
+    if (selectedLanguage == "Arabic") {
+      return "تم";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تەواو";
+    } else
+      return "Done";
+  }
+
+  String tCancel() {
+    if (selectedLanguage == "Arabic") {
+      return "إلغاء";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ڕەتکردن";
+    } else
+      return "Cancel";
+  }
+
+  String tNotLogIn() {
+    if (selectedLanguage == "Arabic") {
+      return "أنت غير مسجل دخول، هل تريد تسجيل الدخول لحفظ تقدمك؟";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تۆ نەچوویتە ژوورەوە، دەتەوێت بچیتە ژوورەوە بۆ ئەوەی پێشکەوتنەکانت پاشەکەوت بکەیت؟";
+    } else
+      return "Your currently not logged in do you want to login to store your progress?";
+  }
+
+  String tSkip() {
+    if (selectedLanguage == "Arabic") {
+      return "يتخطى";
+    } else if (selectedLanguage == "Kurdish") {
+      return "بازدان";
+    } else
+      return "Skip";
+  }
+
+  String tLogin() {
+    if (selectedLanguage == "Arabic") {
+      return "تسجيل الدخول";
+    } else if (selectedLanguage == "Kurdish") {
+      return "چونه‌ ژووره‌وه‌";
+    } else
+      return "Login";
+  }
+
+  String tAddProject() {
+    if (selectedLanguage == "Arabic") {
+      return "أضف المشروع";
+    } else if (selectedLanguage == "Kurdish") {
+      return "زیادکردنی پڕۆژە";
+    } else
+      return "Add Project";
+  }
+
+  String tAddAction() {
+    if (selectedLanguage == "Arabic") {
+      return "أضف العمل";
+    } else if (selectedLanguage == "Kurdish") {
+      return "زیادکردنی کردار";
+    } else
+      return "Add Action";
+  }
+
+  String tSorry() {
+    if (selectedLanguage == "Arabic") {
+      return "عذرا ، تحتاج إلى تسجيل الدخول لتحميل مشروع";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ببورە، پێویستە بچیتە ژوورەوە بۆ بارکردنی پڕۆژەیەک";
+    } else
+      return "Sorry, you need to log in to upload a project";
+  }
+
+  String tPleaseFill() {
+    if (selectedLanguage == "Arabic") {
+      return "يرجى ملء البيانات المطلوبة";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تکایە داتای پێویست پڕبکەرەوە";
+    } else
+      return "Please fill in the required Data";
+  }
+
+  String tEmail() {
+    if (selectedLanguage == "Arabic") {
+      return "بريد إلكتروني";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ئیمەیڵ";
+    } else
+      return "Email";
+  }
+
+  String tPassword() {
+    if (selectedLanguage == "Arabic") {
+      return "كلمة المرور";
+    } else if (selectedLanguage == "Kurdish") {
+      return "پاسۆرد";
+    } else
+      return "Password";
+  }
+
+  String tCreateAccount() {
+    if (selectedLanguage == "Arabic") {
+      return "إنشاء حساب";
+    } else if (selectedLanguage == "Kurdish") {
+      return "دروستکردنی ئەکاونت";
+    } else
+      return "Create Account";
+  }
+
+  String tNext() {
+    if (selectedLanguage == "Arabic") {
+      return "التالي";
+    } else if (selectedLanguage == "Kurdish") {
+      return "دواتر";
+    } else
+      return "Next";
+  }
+
+  String tYourProject() {
+    if (selectedLanguage == "Arabic") {
+      return "مشاريعك";
+    } else if (selectedLanguage == "Kurdish") {
+      return "پرۆژەکانت";
+    } else
+      return "Your Project";
+  }
+
+  String tConfirmPassword() {
+    if (selectedLanguage == "Arabic") {
+      return "تأكيد كلمة المرور";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ووشەی نھێنی  دووبارە بكەوە";
+    } else
+      return "COnfirm Password";
+  }
+
+  String tName() {
+    if (selectedLanguage == "Arabic") {
+      return "اسم";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ناو";
+    } else
+      return "Name";
+  }
+
+  String tNotMatchPassword() {
+    if (selectedLanguage == "Arabic") {
+      return "يبدو أن تأكيد كلمة المرور الخاص بك غير مطابق. حاول مرة اخرى";
+    } else if (selectedLanguage == "Kurdish") {
+      return "وا دیارە پشتڕاستکردنەوەی وشەی نهێنی تۆ یەک ناگرێتەوە. تكایە دوبارە هەوڵ بدەوە";
+    } else
+      return "It looks like your password confirmation doesn't match. Please try again";
+  }
+
+  String tSignUp() {
+    if (selectedLanguage == "Arabic") {
+      return "تسجيل";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تۆمارکردن";
+    } else
+      return "Sign Up";
+  }
+
+  String tAlready() {
+    if (selectedLanguage == "Arabic") {
+      return "لديك حساب بالفعل؟";
+    } else if (selectedLanguage == "Kurdish") {
+      return "پێشتر ئەکاونتت هەیە؟";
+    } else
+      return "Already have an Account?";
+  }
+
+  String tYouDidntSupport() {
+    if (selectedLanguage == "Arabic") {
+      return "أنت لم تدعم أي مشاريع";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تۆ پشتگیری هیچ پڕۆژەیەکت نەکرد";
+    } else
+      return "You didnt support any projects";
+  }
+
+  String tYouDontHaveAnyProject() {
+    if (selectedLanguage == "Arabic") {
+      return "ليس لديك أي مشاريع";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تۆ هیچ پڕۆژەیەکت نییە";
+    } else
+      return "You dont have any projects";
+  }
+
+  String tChoosePicture() {
+    if (selectedLanguage == "Arabic") {
+      return "الرجاء اختيار صورة لمشروعك";
+    } else if (selectedLanguage == "Kurdish") {
+      return "تکایە وێنەیەک بۆ پڕۆژەکەت هەڵبژێرە";
+    } else
+      return "please choose aa picture for your project";
+  }
+
+  String tTitle() {
+    if (selectedLanguage == "Arabic") {
+      return "عنوان";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ناونیشان";
+    } else
+      return "Title";
+  }
+
+  String tSelectDate() {
+    if (selectedLanguage == "Arabic") {
+      return "حدد تاريخ";
+    } else if (selectedLanguage == "Kurdish") {
+      return "بەروار هەڵبژێرە";
+    } else
+      return "Select Date";
+  }
+
+  String tLocation() {
+    if (selectedLanguage == "Arabic") {
+      return "موقع";
+    } else if (selectedLanguage == "Kurdish") {
+      return "شوێن";
+    } else
+      return "Location";
+  }
+
+  String tPost() {
+    if (selectedLanguage == "Arabic") {
+      return "نشر";
+    } else if (selectedLanguage == "Kurdish") {
+      return "پۆستکردن";
+    } else
+      return "Post";
+  }
+
+  String tGallery() {
+    if (selectedLanguage == "Arabic") {
+      return "من معرض الصور";
+    } else if (selectedLanguage == "Kurdish") {
+      return "لە گەلەرییەوە";
+    } else
+      return "From Gallery";
+  }
+
+  String tSupport() {
+    if (selectedLanguage == "Arabic") {
+      return "دعم";
+    } else if (selectedLanguage == "Kurdish") {
+      return "پشتگیری";
+    } else
+      return "Support";
+  }
+
+  String tNote() {
+    if (selectedLanguage == "Arabic") {
+      return "هل أنت متأكد أنك تريد دعم قضية هذا المشروع؟ ملاحظة. سوف تكسب ١٠ نقاط من خلال دعم المشاريع";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ئایا دڵنیای کە دەتەوێت پشتگیری لە دۆزی ئەم پڕۆژەیە بکەیت؟ زبور. بە پشتگیریکردنی پڕۆژەکان ١٠ خاڵ بەدەست دەهێنیت";
+    } else
+      return "Are you sure you want to support the cause of this Project? Ps. you will gain 10 Points by Supporting Projects";
   }
 }

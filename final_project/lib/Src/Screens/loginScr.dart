@@ -1,11 +1,13 @@
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
 class loginScr extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
@@ -42,7 +44,7 @@ class loginScr extends StatelessWidget {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Login',
+                      Provider.of<languages>(context).tLogin(),
                       style: TextStyle(
                           color: mainColor(),
                           fontSize: 27,
@@ -64,7 +66,7 @@ class loginScr extends StatelessWidget {
                 height: heightScr(context) * 0.03,
               ),
               DefaultTextField(
-                "Email",
+                Provider.of<languages>(context).tEmail(),
                 Icons.email,
                 textController: emailController,
               ),
@@ -72,7 +74,7 @@ class loginScr extends StatelessWidget {
                 height: heightScr(context) * 0.01,
               ),
               DefaultTextField(
-                "Password",
+                Provider.of<languages>(context).tPassword(),
                 Icons.password,
                 secure: true,
                 sufIcon: Icons.visibility_off,
@@ -111,8 +113,8 @@ class loginScr extends StatelessWidget {
                       signIn(emailController.text.toString(),
                           passwordController.text.toString(), context);
                     },
-                    child: const Text(
-                      'Login',
+                    child: Text(
+                      Provider.of<languages>(context).tLogin(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -127,7 +129,8 @@ class loginScr extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/signupScr');
                       },
-                      child: const Text('Create an Account')),
+                      child: Text(
+                          Provider.of<languages>(context).tCreateAccount())),
                 ),
               )
             ],

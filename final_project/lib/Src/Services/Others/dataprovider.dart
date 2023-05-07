@@ -13,10 +13,9 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class dataprovider extends ChangeNotifier {
   dataprovider(this.context);
-  final BuildContext context;
+  BuildContext context;
   int rank = 0;
-  late List<actionButtonListType> btnList =
-      actionButtonList(Provider.of<languages>(context));
+  List<actionButtonListType>? btnList;
   List natureFact = [];
   List listPoints = [];
   userModel? userData;
@@ -25,7 +24,12 @@ class dataprovider extends ChangeNotifier {
 
   DateRangePickerController? datePickerProject;
   changeIsSelectedGroupBtn(bool isSelected, int index) {
-    btnList.elementAt(index).isSeleccted = isSelected;
+    btnList!.elementAt(index).isSeleccted = isSelected;
+    notifyListeners();
+  }
+
+  fillAction(lang) {
+    btnList = actionButtonList(lang);
     notifyListeners();
   }
 

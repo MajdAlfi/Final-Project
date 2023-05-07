@@ -6,12 +6,14 @@ import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/defaultProject.dart';
 
@@ -27,7 +29,7 @@ class yourProject extends StatelessWidget {
           elevation: 0,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           foregroundColor: Colors.black,
-          title: Text("Projects",
+          title: Text(Provider.of<languages>(context).tProjects(),
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w700,
@@ -40,7 +42,7 @@ class yourProject extends StatelessWidget {
                     height: heightScr(context) * 0.85,
                     child: Center(
                         child: Text(
-                      "You dont have any projects",
+                      Provider.of<languages>(context).tYouDontHaveAnyProject(),
                       style: TextStyle(fontSize: 25, color: mainColor()),
                     )))
                 : FutureBuilder(

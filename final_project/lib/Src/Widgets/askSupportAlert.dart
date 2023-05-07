@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Services/Home/addPoints.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Services/Projects/addProjectSupported.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +14,17 @@ Future askSupportAlert(context, int supProject) async {
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30))),
             title: const Icon(Icons.question_mark),
-            content: const Text(
-                'Are you sure you want to support the cause of this Project? Ps. you will gain 10 Points by Supporting Projects'),
+            content: Text(Provider.of<languages>(context).tNote()),
             actions: [
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text(
-                    'Cancel',
+                  child: Text(
+                    Provider.of<languages>(context).tCancel(),
                     style: TextStyle(
                         color: Colors.black54,
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.w400),
                   )),
               Container(
@@ -41,11 +41,11 @@ Future askSupportAlert(context, int supProject) async {
                       await addPoints(10, context);
                       Navigator.pop(context);
                     },
-                    child: const Text(
-                      'Support',
+                    child: Text(
+                      Provider.of<languages>(context).tSupport(),
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontWeight: FontWeight.w700),
                     ),
                   ))

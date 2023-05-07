@@ -3,8 +3,7 @@ import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-List<actionButtonListType> actionButtonList(language) {
-  print(language);
+List<actionButtonListType> actionButtonList(languages language) {
   List<actionButtonListType> actionBtnList = [
     actionButtonListType(
         index: 0,
@@ -67,5 +66,6 @@ List<actionButtonListType> actionButtonList(language) {
         pts: 20,
         isSeleccted: false),
   ];
+
   return actionBtnList;
 }

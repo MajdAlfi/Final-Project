@@ -1,7 +1,9 @@
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatelessWidget {
@@ -68,7 +70,7 @@ class OnBoarding extends StatelessWidget {
                           duration: Duration(milliseconds: 500),
                           curve: Curves.linear);
                     },
-                    child: Text("skip"),
+                    child: Text(Provider.of<languages>(context).tSkip()),
                   ),
                   Spacer(),
                   ElevatedButton.icon(
@@ -82,7 +84,7 @@ class OnBoarding extends StatelessWidget {
                             curve: Curves.linear);
                       },
                       icon: Icon(Icons.arrow_right),
-                      label: Text("Next")),
+                      label: Text(Provider.of<languages>(context).tNext())),
                 ],
               ),
             )

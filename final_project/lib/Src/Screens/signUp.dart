@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/Src/Widgets/defaultTextField.dart';
@@ -68,7 +69,7 @@ class _SignUpState extends State<SignUp> {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'SignUp',
+                        Provider.of<languages>(context).tSignUp(),
                         style: TextStyle(
                             color: mainColor(),
                             fontSize: 27,
@@ -132,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                   height: heightScr(context) * 0.05,
                 ),
                 DefaultTextField(
-                  "Name",
+                  Provider.of<languages>(context).tName(),
                   Icons.perm_identity,
                   textController: nameController,
                 ),
@@ -140,7 +141,7 @@ class _SignUpState extends State<SignUp> {
                   height: heightScr(context) * 0.01,
                 ),
                 DefaultTextField(
-                  "Email",
+                  Provider.of<languages>(context).tEmail(),
                   Icons.email,
                   textController: emailController,
                 ),
@@ -148,7 +149,7 @@ class _SignUpState extends State<SignUp> {
                   height: heightScr(context) * 0.01,
                 ),
                 DefaultTextField(
-                  "Password",
+                  Provider.of<languages>(context).tPassword(),
                   Icons.password,
                   secure: passwordshow,
                   sufIcon: Icons.visibility_off_rounded,
@@ -163,7 +164,7 @@ class _SignUpState extends State<SignUp> {
                   height: heightScr(context) * 0.01,
                 ),
                 DefaultTextField(
-                  "Confirm Password",
+                  Provider.of<languages>(context).tConfirmPassword(),
                   Icons.password,
                   textController: confirmPassword,
                   secure: confirmPasswordshow,
@@ -179,7 +180,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 defaultElevatedButton(
                   context,
-                  "Sign UP",
+                  Provider.of<languages>(context).tSignUp(),
                   () {
                     if (confirmPassword.text == passwordController.text) {
                       register(
@@ -191,8 +192,8 @@ class _SignUpState extends State<SignUp> {
                           context);
                     } else {
                       Fluttertoast.showToast(
-                          msg:
-                              "It looks like your password confirmation doesn't match. Please try again",
+                          msg: Provider.of<languages>(context, listen: false)
+                              .tNotMatchPassword(),
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           timeInSecForIosWeb: 1,
@@ -210,7 +211,7 @@ class _SignUpState extends State<SignUp> {
                     },
                     style: TextButton.styleFrom(padding: EdgeInsets.zero),
                     child: Text(
-                      "Already have an account?",
+                      Provider.of<languages>(context).tAlready(),
                       style: TextStyle(color: Colors.grey[500]),
                     ),
                   ),

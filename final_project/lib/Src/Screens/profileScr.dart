@@ -232,7 +232,9 @@ class _ProfileScrState extends State<ProfileScr> {
                               !anonymousCheck()
                                   ? Expanded(
                                       child: defaultElevatedButton(
-                                          context, "Your Projects", () {
+                                          context,
+                                          Provider.of<languages>(context)
+                                              .tYourProject(), () {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

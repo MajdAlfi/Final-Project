@@ -3,6 +3,7 @@ import 'package:final_project/Src/Services/Home/addPoints.dart';
 import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/askLoginDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,14 +28,14 @@ class doneAction extends StatelessWidget {
             final auth = FirebaseAuth.instance;
             final length = context
                 .read<dataprovider>()
-                .btnList
+                .btnList!
                 .where((element) => element.isSeleccted == true)
                 .length;
             for (int i = 0; i < length; i++) {
               await addPoints(
                   context
                       .read<dataprovider>()
-                      .btnList
+                      .btnList!
                       .where((element) => element.isSeleccted == true)
                       .elementAt(i)
                       .pts,
@@ -49,10 +50,10 @@ class doneAction extends StatelessWidget {
             Navigator.pop(context);
             if (auth.currentUser!.isAnonymous)
               askLoginDialog(context,
-                  "Your currently not logged in do you want to login to store your progress?");
+                  Provider.of<languages>(context, listen: false).tNotLogIn());
           },
-          child: const Text(
-            'Done',
+          child: Text(
+            Provider.of<languages>(context).tDone(),
             style: TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15),
           ),

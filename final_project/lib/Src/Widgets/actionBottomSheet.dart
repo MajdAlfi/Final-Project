@@ -31,13 +31,13 @@ class _actionBottomSheetState extends State<actionBottomSheet> {
             itemBuilder: (context, index) {
               return groupActionButton(
                 actionBtn:
-                    context.watch<dataprovider>().btnList.elementAt(index),
+                    context.watch<dataprovider>().btnList!.elementAt(index),
                 index: index,
               );
             },
             separatorBuilder: (context, index) => const SizedBox(
                   height: 10,
                 ),
-            itemCount: context.read<dataprovider>().btnList.length));
+            itemCount: context.read<dataprovider>().btnList!.length));
   }
 }

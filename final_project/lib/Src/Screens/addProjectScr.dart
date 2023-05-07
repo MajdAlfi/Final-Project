@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Projects/uploadProject.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/Src/Widgets/showALertDialog.dart';
@@ -29,7 +30,7 @@ class AddProject extends StatelessWidget {
         foregroundColor: Colors.black,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text("Add Project"),
+        title: Text(Provider.of<languages>(context).tAddProject()),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -53,8 +54,8 @@ class AddProject extends StatelessWidget {
                           fit: BoxFit.cover,
                           filterQuality: FilterQuality.medium,
                         )
-                      : const Text(
-                          "Please choose a picture for your project",
+                      : Text(
+                          Provider.of<languages>(context).tChoosePicture(),
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
                         ),
@@ -68,7 +69,8 @@ class AddProject extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
-                          child: defaultElevatedButton(context, "From Gallery",
+                          child: defaultElevatedButton(context,
+                              Provider.of<languages>(context).tGallery(),
                               () async {
                         try {
                           final picker = ImagePicker();
@@ -112,7 +114,7 @@ class AddProject extends StatelessWidget {
                     height: 10,
                   ),
                   DefaultTextField(
-                    "Title",
+                    Provider.of<languages>(context).tTitle(),
                     Icons.title,
                     textController: titleField,
                   ),
@@ -127,25 +129,29 @@ class AddProject extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  DefaultTextField("Goal", Icons.grade,
+                  DefaultTextField(
+                      Provider.of<languages>(context).tGoal(), Icons.grade,
                       textController: goalField),
                   const SizedBox(
                     height: 10,
                   ),
-                  DefaultTextField("Overview", Icons.list,
+                  DefaultTextField(
+                      Provider.of<languages>(context).tOverView(), Icons.list,
                       textController: overviewField),
                   const SizedBox(
                     height: 10,
                   ),
                   DefaultTextField(
-                    "Location",
+                    Provider.of<languages>(context).tLocation(),
                     Icons.location_on,
                     textController: locationField,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  defaultElevatedButton(context, "Post", () async {
+                  defaultElevatedButton(
+                      context, Provider.of<languages>(context).tPost(),
+                      () async {
                     if (context.read<dataprovider>().projectImgPath != null &&
                         context.read<dataprovider>().projectImgPath != '' &&
                         context.read<dataprovider>().datePickerProject !=
@@ -175,7 +181,9 @@ class AddProject extends StatelessWidget {
                       locationField.text = '';
                     } else {
                       showAlertDialog(
-                          context, 'Please fill in the required Data!');
+                          context,
+                          Provider.of<languages>(context, listen: false)
+                              .tPleaseFill());
                     }
                   }),
                 ],

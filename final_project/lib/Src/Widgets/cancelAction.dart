@@ -1,5 +1,6 @@
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -26,8 +27,8 @@ class cancelAction extends StatelessWidget {
             }
             Navigator.pop(context);
           },
-          child: const Text(
-            'Cancel',
+          child: Text(
+            Provider.of<languages>(context).tCancel(),
             style: TextStyle(
                 color: Colors.red, fontWeight: FontWeight.w500, fontSize: 15),
           ),
