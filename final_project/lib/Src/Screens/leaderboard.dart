@@ -9,6 +9,8 @@ import 'package:final_project/Src/Widgets/rankSquare.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../Services/Others/languagesProvider.dart';
+
 class Leaderboard extends StatelessWidget {
   Leaderboard({super.key});
 
@@ -22,9 +24,9 @@ class Leaderboard extends StatelessWidget {
           Positioned(
             top: heightScr(context) * 0.17,
             left: widthScr(context) * 0.125,
-            child: const Center(
+            child: Center(
                 child: Text(
-              'Rank:',
+              "${Provider.of<languages>(context).tRank()}:",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,

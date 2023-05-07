@@ -5,13 +5,18 @@ import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/actionButtonList.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class dataprovider extends ChangeNotifier {
+  dataprovider(this.context);
+  final BuildContext context;
   int rank = 0;
-  List<actionButtonListType> btnList = actionButtonList();
+  late List<actionButtonListType> btnList =
+      actionButtonList(Provider.of<languages>(context));
   List natureFact = [];
   List listPoints = [];
   userModel? userData;

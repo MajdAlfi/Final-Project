@@ -1,65 +1,68 @@
 import 'package:final_project/Src/Models/actionButtonListType.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-List<actionButtonListType> actionButtonList() {
+List<actionButtonListType> actionButtonList(language) {
+  print(language);
   List<actionButtonListType> actionBtnList = [
     actionButtonListType(
         index: 0,
-        name: 'Reduce Paper Wastage',
+        name: language.tReducePaper(),
         iconBtn: Icons.cut,
         pts: 20,
         isSeleccted: false),
     actionButtonListType(
         index: 1,
-        name: 'Avoid Using Disposable Water Bottles and Cups',
+        name: language.tAvoidDisposable(),
         iconBtn: Icons.stop_circle,
         pts: 30,
         isSeleccted: false),
     actionButtonListType(
         index: 2,
-        name: 'Turn off Lights',
+        name: language.tTurnOffLights(),
         iconBtn: Icons.lightbulb_outlined,
         pts: 10,
         isSeleccted: false),
     actionButtonListType(
         index: 3,
-        name: 'Use Energy-Saving Lightbulbs',
+        name: language.tUseEnergySaving(),
         iconBtn: Icons.electrical_services,
         pts: 15,
         isSeleccted: false),
     actionButtonListType(
         index: 4,
-        name: 'Keep a Compost Bin',
+        name: language.tKeepACompostBin(),
         iconBtn: Icons.delete,
         pts: 20,
         isSeleccted: false),
     actionButtonListType(
         index: 5,
-        name: 'Carpool',
+        name: language.tCarpool(),
         iconBtn: Icons.drive_eta,
         pts: 25,
         isSeleccted: false),
     actionButtonListType(
         index: 6,
-        name: 'Swap Baths for Showers',
+        name: language.tSwapBaths(),
         iconBtn: Icons.shower,
         pts: 10,
         isSeleccted: false),
     actionButtonListType(
         index: 7,
-        name: 'Shop with Re-Usable Shopping Bags',
+        name: language.tShop(),
         iconBtn: Icons.shopping_bag,
         pts: 15,
         isSeleccted: false),
     actionButtonListType(
         index: 8,
-        name: 'Use Cloth Napkins Instead of Paper Ones',
+        name: language.tUseCloth(),
         iconBtn: Icons.receipt,
         pts: 10,
         isSeleccted: false),
     actionButtonListType(
         index: 9,
-        name: 'Repurpose and Recycle',
+        name: language.tRepurpose(),
         iconBtn: Icons.recycling,
         pts: 20,
         isSeleccted: false),

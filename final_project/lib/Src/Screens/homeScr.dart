@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 import '../Services/Auth/getCurrentUser.dart';
+import '../Services/Others/languagesProvider.dart';
 
 class homeScr extends StatelessWidget {
   homeScr({super.key});
@@ -90,8 +91,8 @@ class homeScr extends StatelessWidget {
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold),
                           ),
-                          const Text(
-                            'Points',
+                          Text(
+                            Provider.of<languages>(context).tPoint(),
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -117,12 +118,13 @@ class homeScr extends StatelessWidget {
                             SizedBox(
                               height: heightScr(context) * 0.08,
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(left: 10.0),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Nature Facts',
+                                  Provider.of<languages>(context)
+                                      .tNatureFacts(),
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 22,
@@ -156,14 +158,15 @@ class homeScr extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: heightScr(context) * 0.03,
+                              height: heightScr(context) * 0.02,
                             ),
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(left: 10.0),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Top Projects',
+                                  Provider.of<languages>(context)
+                                      .tTopProjects(),
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 22,
@@ -172,7 +175,7 @@ class homeScr extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: heightScr(context) * 0.03,
+                              height: heightScr(context) * 0.02,
                             ),
                             FutureBuilder(
                               future: FirebaseFirestore.instance

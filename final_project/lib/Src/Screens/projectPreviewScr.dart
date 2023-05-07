@@ -5,6 +5,7 @@ import 'package:d_chart/d_chart.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Widgets/askSupportAlert.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:final_project/Src/Widgets/supportButton.dart';
@@ -114,8 +115,8 @@ class ProjectPreview extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                const Text(
-                                  "Goal",
+                                Text(
+                                  Provider.of<languages>(context).tGoal(),
                                 ),
                                 const Spacer(),
                                 Text(

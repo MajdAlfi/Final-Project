@@ -1,6 +1,7 @@
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Projects/checkSupported.dart';
 import 'package:final_project/Src/Widgets/askSupportAlert.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
@@ -29,9 +30,9 @@ class _supportButtonState extends State<supportButton> {
                   Radius.circular(20),
                 ),
                 color: greyColor()),
-            child: const Center(
+            child: Center(
               child: Text(
-                'Supported Already!',
+                Provider.of<languages>(context).tSupportedAlready(),
                 style: TextStyle(
                     color: Color.fromARGB(197, 0, 0, 0),
                     fontSize: 20,
@@ -39,7 +40,9 @@ class _supportButtonState extends State<supportButton> {
               ),
             ),
           )
-        : defaultElevatedButton(context, "Support Project", () async {
+        : defaultElevatedButton(
+            context, Provider.of<languages>(context).tSupportProject(),
+            () async {
             await askSupportAlert(context, widget.projectID)
                 .then((value) async {
               setState(() {});

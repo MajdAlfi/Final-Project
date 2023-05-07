@@ -5,6 +5,7 @@ import 'package:final_project/Src/Screens/onBoarding.dart';
 import 'package:final_project/Src/Screens/profileScr.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -27,7 +28,12 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(
         create: (BuildContext context) {
-          return dataprovider();
+          return languages();
+        },
+      ),
+      ChangeNotifierProvider(
+        create: (BuildContext context) {
+          return dataprovider(context);
         },
       ),
     ],

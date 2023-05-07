@@ -6,7 +6,9 @@ import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/Width&Height.dart';
 import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/greyColor.dart';
+import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
+import 'package:final_project/Src/Widgets/defaultDropDownButton.dart';
 import 'package:final_project/Src/Widgets/defaultElevatedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -130,8 +132,8 @@ class _ProfileScrState extends State<ProfileScr> {
                           ),
                           Row(
                             children: [
-                              const Text(
-                                "Goal",
+                              Text(
+                                Provider.of<languages>(context).tGoal(),
                                 style: TextStyle(color: Colors.white),
                               ),
                               const Spacer(),
@@ -201,19 +203,24 @@ class _ProfileScrState extends State<ProfileScr> {
                                   Provider.of<dataprovider>(
                                     context,
                                   ).userData!.points!,
-                                  "Total Point"),
+                                  Provider.of<languages>(context)
+                                      .tTotalPoint()),
                               defaultShowPoints(
                                   context,
                                   Provider.of<dataprovider>(
                                     context,
                                   ).userData!.actionsCompleted!,
-                                  "Action Completed"),
+                                  Provider.of<languages>(
+                                    context,
+                                  ).tActionCompleted()),
                               defaultShowPoints(
                                   context,
                                   Provider.of<dataprovider>(
                                     context,
                                   ).userData!.supportedProjects!.length,
-                                  "Supported Project"),
+                                  Provider.of<languages>(
+                                    context,
+                                  ).tSupportedProject()),
                             ],
                           ),
                           const SizedBox(
@@ -240,7 +247,10 @@ class _ProfileScrState extends State<ProfileScr> {
                               ),
                               Expanded(
                                   child: defaultElevatedButton(
-                                      context, "Supported Projects", () {
+                                      context,
+                                      Provider.of<languages>(
+                                        context,
+                                      ).tSupportedProject(), () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -275,9 +285,10 @@ class _ProfileScrState extends State<ProfileScr> {
                                               .userData!
                                               .points ==
                                           0)
-                                      ? const Center(
+                                      ? Center(
                                           child: Text(
-                                            'Please gain points to show analysis!',
+                                            Provider.of<languages>(context)
+                                                .tPlease(),
                                             style: TextStyle(
                                                 color: Colors.black54,
                                                 fontSize: 15),
@@ -335,7 +346,8 @@ class _ProfileScrState extends State<ProfileScr> {
                                           },
                                         ),
                                       ),
-                                    ))
+                                    )),
+                          LanguageDropdown()
                         ],
                       ),
                     ),
