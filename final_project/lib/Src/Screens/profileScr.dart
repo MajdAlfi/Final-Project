@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d_chart/d_chart.dart';
+import 'package:final_project/Src/Screens/settings.dart';
 import 'package:final_project/Src/Screens/supportedProjects.dart';
 import 'package:final_project/Src/Screens/yourProjectsScr.dart';
 import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
@@ -116,9 +118,10 @@ class _ProfileScrState extends State<ProfileScr> {
                               ),
                               IconButton(
                                 onPressed: () {
-                                  Provider.of<dataprovider>(context,
-                                          listen: false)
-                                      .signOut(context);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SettingScr()));
                                 },
                                 icon: const Icon(
                                   Icons.settings,

@@ -8,8 +8,20 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class showDatePickerContainer extends StatelessWidget {
+class showDatePickerContainer extends StatefulWidget {
   const showDatePickerContainer({super.key});
+
+  @override
+  State<showDatePickerContainer> createState() =>
+      _showDatePickerContainerState();
+}
+
+class _showDatePickerContainerState extends State<showDatePickerContainer> {
+  @override
+  void initState() {
+    Provider.of<dataprovider>(context, listen: false).datePickerProject = null;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +64,31 @@ class showDatePickerContainer extends StatelessWidget {
           color: greyColor(),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.date_range),
-            Text(Provider.of<languages>(context).tSelectDate())
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.date_range,
+                color: Colors.grey[600],
+              ),
+              Provider.of<dataprovider>(
+                        context,
+                      ).datePickerProject !=
+                      null
+                  ? Text(
+                      Provider.of<dataprovider>(
+                        context,
+                      ).datePickerProject!.selectedDate.toString(),
+                      style: TextStyle(color: Colors.grey[700]),
+                    )
+                  : Text(
+                      Provider.of<languages>(context).tSelectDate(),
+                      style: TextStyle(color: Colors.grey[700]),
+                    )
+            ],
+          ),
         ),
       ),
     );

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 ElevatedButton defaultElevatedButton(
     BuildContext context, String label, dynamic onTap,
-    {IconData? icon}) {
+    {IconData? icon, Color? bgColor}) {
   return ElevatedButton(
     onPressed: onTap,
     style: ElevatedButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: mainColor(),
+      backgroundColor: bgColor ?? mainColor(),
     ),
     child: SizedBox(
         width: double.infinity,

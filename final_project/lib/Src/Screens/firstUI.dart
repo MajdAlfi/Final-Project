@@ -74,7 +74,7 @@ class _firstUIState extends State<firstUI> {
             showUnselectedLabels: false,
             selectedLabelStyle: const TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.bold),
-            items: const <BottomNavigationBarItem>[
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 label: 'Home',
                 icon: Icon(Icons.home),

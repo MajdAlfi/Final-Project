@@ -106,6 +106,7 @@ class dataprovider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isLoading = false;
   signOut(context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     _auth.signOut().then((value) async {
