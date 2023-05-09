@@ -8,6 +8,7 @@ class LanguageDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
+      elevation: 10,
       value: Provider.of<languages>(context).selectedLanguage,
       onChanged: (newValue) {
         Provider.of<languages>(context, listen: false).changeLanguage(newValue);

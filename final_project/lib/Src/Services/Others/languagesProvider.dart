@@ -480,4 +480,112 @@ class languages with ChangeNotifier {
     } else
       return "Are you sure you want to support the cause of this Project? Ps. you will gain 10 Points by Supporting Projects";
   }
+
+  String tSettings() {
+    if (selectedLanguage == "Arabic") {
+      return "إعدادات";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ڕێکخستن";
+    } else
+      return "Settings";
+  }
+
+  String tEditProfile() {
+    if (selectedLanguage == "Arabic") {
+      return "تعديل الملف الشخصي";
+    } else if (selectedLanguage == "Kurdish") {
+      return "دەستکاریکردنی پرۆفایل";
+    } else
+      return "Edit Profile";
+  }
+
+  String tAbout() {
+    if (selectedLanguage == "Arabic") {
+      return "حول التطبيق";
+    } else if (selectedLanguage == "Kurdish") {
+      return "سەبارەت بە ئەپڵیکەیشنەکە";
+    } else
+      return "About Application";
+  }
+
+  String tSelectLanguage() {
+    if (selectedLanguage == "Arabic") {
+      return "اختار اللغة";
+    } else if (selectedLanguage == "Kurdish") {
+      return "زمان هەڵبژێرە";
+    } else
+      return "Select Language";
+  }
+
+  String tSignOut() {
+    if (selectedLanguage == "Arabic") {
+      return "خروج";
+    } else if (selectedLanguage == "Kurdish") {
+      return "دەرچوون";
+    } else
+      return "Sign Out";
+  }
+
+  String tEditYourData() {
+    if (selectedLanguage == "Arabic") {
+      return "قم بتعديل بياناتك";
+    } else if (selectedLanguage == "Kurdish") {
+      return "دەستکاری داتاکانی خۆت بکە";
+    } else
+      return "Edit Your Data";
+  }
+
+  String tNewName() {
+    if (selectedLanguage == "Arabic") {
+      return "اسم جديد";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ناوی نوێ";
+    } else
+      return "New Name";
+  }
+
+  String tWriteDescription() {
+    if (selectedLanguage == "Arabic") {
+      return "اكتب الوصف";
+    } else if (selectedLanguage == "Kurdish") {
+      return "وەسف بنووسە";
+    } else
+      return "Write Description";
+  }
+
+  String tSetGoal() {
+    if (selectedLanguage == "Arabic") {
+      return "حدد الهدف";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ئامانج دابنێ";
+    } else
+      return "Set Goal";
+  }
+
+  String tEdit() {
+    if (selectedLanguage == "Arabic") {
+      return "تعديل";
+    } else if (selectedLanguage == "Kurdish") {
+      return "دەستکاریکردن";
+    } else
+      return "Edit";
+  }
+
+  String tLoginToUseFeature() {
+    if (selectedLanguage == "Arabic") {
+      return "يجب عليك تسجيل الدخول أولاً لاستخدام هذه الميزة";
+    } else if (selectedLanguage == "Kurdish") {
+      return "بۆ بەکارهێنانی ئەم تایبەتمەندییە دەبێت سەرەتا بچیتە ژوورەوە";
+    } else
+      return "You have to login first to use this feature";
+  }
+
+  String tAskLogin() {
+    if (selectedLanguage == "Arabic") {
+      return "قم بتسجيل الدخول للوصول إلى الميزات والمحتوى المخصص";
+    } else if (selectedLanguage == "Kurdish") {
+      return "چوونەژوورەوە بۆ دەستگەیشتن بە تایبەتمەندی و ناوەڕۆکی کەسی";
+    } else
+      return "Sign in to access personalized features and content";
+  }
 }

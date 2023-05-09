@@ -352,7 +352,6 @@ class _ProfileScrState extends State<ProfileScr> {
                                         ),
                                       ),
                                     )),
-                          LanguageDropdown()
                         ],
                       ),
                     ),

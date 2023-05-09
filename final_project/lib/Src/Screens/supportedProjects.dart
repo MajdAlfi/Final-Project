@@ -29,7 +29,7 @@ class SupportedProject extends StatelessWidget {
           elevation: 0,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           foregroundColor: Colors.black,
-          title: Text("Projects",
+          title: Text(Provider.of<languages>(context).tProjects(),
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w700,
@@ -42,7 +42,7 @@ class SupportedProject extends StatelessWidget {
                     height: heightScr(context) * 0.85,
                     child: Center(
                         child: Text(
-                      "You didnt support any projects",
+                      Provider.of<languages>(context).tYouDidntSupport(),
                       style: TextStyle(fontSize: 25, color: mainColor()),
                     )))
                 : FutureBuilder(

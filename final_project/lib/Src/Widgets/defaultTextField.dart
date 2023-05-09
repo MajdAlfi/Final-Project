@@ -27,8 +27,9 @@ class DefaultTextField extends StatelessWidget {
         maxLines: (label == 'Overview') ? 5 : 1,
         controller: textController,
         obscureText: secure ?? false,
-        keyboardType:
-            (label == 'Goal') ? TextInputType.number : TextInputType.text,
+        keyboardType: (label == 'Goal' || label == "Set Goal")
+            ? TextInputType.number
+            : TextInputType.text,
         decoration: InputDecoration(
             suffixIcon: IconButton(
               onPressed: onSufIconTap,

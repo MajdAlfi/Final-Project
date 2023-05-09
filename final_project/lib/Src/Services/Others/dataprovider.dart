@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:final_project/Src/Models/actionButtonListType.dart';
 import 'package:final_project/Src/Models/pointsModel.dart';
 import 'package:final_project/Src/Models/userModel.dart';
 import 'package:final_project/Src/Screens/firstUI.dart';
 import 'package:final_project/Src/Services/Auth/authentication.dart';
+import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Home/analysisPoints.dart';
 import 'package:final_project/Src/Services/Others/actionButtonList.dart';
 import 'package:final_project/Src/Services/Others/languagesProvider.dart';
@@ -118,6 +120,26 @@ class dataprovider extends ChangeNotifier {
       userData = userModel();
       profileIMG = "";
       listPoints.clear();
+    });
+
+    notifyListeners();
+  }
+
+  void editUser(TextEditingController name, TextEditingController goal,
+      TextEditingController desc, BuildContext context) async {
+    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+    print(goal.text.trim().isEmpty);
+
+    await FirebaseFirestore.instance.collection("Users").doc(getUid()).update({
+      "name": name.text.trim() == "" ? userData!.name : name.text,
+      "description": desc.text.trim() == "" ? userData!.desc : desc.text,
+      "goal": goal.text.trim().isEmpty ? userData!.goal : int.parse(goal.text)
+    }).then((value) {
+      userData!.name = name.text.isEmpty ? userData!.name : name.text;
+      userData!.goal =
+          goal.text.trim().isEmpty ? userData!.goal : int.parse(goal.text);
+      userData!.desc = desc.text.trim() == "" ? userData!.desc : desc.text;
+      Navigator.pop(context);
     });
 
     notifyListeners();
