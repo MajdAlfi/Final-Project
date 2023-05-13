@@ -123,8 +123,11 @@ class SettingScr extends StatelessWidget {
             SizedBox(
               height: heightScr(context) * 0.01,
             ),
-            SettingsButton(Provider.of<languages>(context).tAbout(),
-                Icon(Icons.info_outline)),
+            GestureDetector(
+              onTap: () {},
+              child: SettingsButton(Provider.of<languages>(context).tAbout(),
+                  Icon(Icons.info_outline)),
+            ),
             SizedBox(
               height: heightScr(context) * 0.08,
             ),

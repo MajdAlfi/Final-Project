@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:final_project/Src/Services/Auth/getCurrentUser.dart';
 import 'package:final_project/Src/Services/Home/ActionsCompleted.dart';
 import 'package:final_project/Src/Services/Home/addPoints.dart';
 import 'package:final_project/Src/Services/Home/analysisPoints.dart';
@@ -26,20 +28,26 @@ class doneAction extends StatelessWidget {
         child: TextButton(
           onPressed: () async {
             final auth = FirebaseAuth.instance;
-            final length = context
-                .read<dataprovider>()
-                .btnList!
-                .where((element) => element.isSeleccted == true)
-                .length;
+            final length =
+                context.read<dataprovider>().btnList!.where((element) {
+              return element.isSeleccted == true;
+            }).length;
             for (int i = 0; i < length; i++) {
-              await addPoints(
-                  context
-                      .read<dataprovider>()
-                      .btnList!
-                      .where((element) => element.isSeleccted == true)
-                      .elementAt(i)
-                      .pts,
-                  context);
+              print(length);
+              final btnList =
+                  context.read<dataprovider>().btnList!.where((element) {
+                return element.isSeleccted == true;
+              });
+              btnList.forEach((element) {
+                print(element.name);
+                FirebaseFirestore.instance
+                    .collection("Users")
+                    .doc(getUid())
+                    .collection("Actions")
+                    .doc(element.index.toString())
+                    .set({"action": element.name, "date": DateTime.now()});
+              });
+              await addPoints(btnList.elementAt(i).pts, context);
             }
             await actionsCompleted(length, context);
             for (int i = 0; i < 10; i++) {

@@ -179,7 +179,7 @@ class homeScr extends StatelessWidget {
                             ),
                             FutureBuilder(
                               future: FirebaseFirestore.instance
-                                  .collection("Projects")
+                                  .collection("Projects").orderBy("currentPoints",descending: true)
                                   .get(),
                               builder: (context, snapshot) => snapshot
                                           .connectionState ==
