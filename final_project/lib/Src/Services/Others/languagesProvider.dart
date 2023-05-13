@@ -337,6 +337,15 @@ class languages with ChangeNotifier {
       return "Next";
   }
 
+  String tFinish() {
+    if (selectedLanguage == "Arabic") {
+      return "انتهى";
+    } else if (selectedLanguage == "Kurdish") {
+      return "ته واو";
+    } else
+      return "Finish";
+  }
+
   String tYourProject() {
     if (selectedLanguage == "Arabic") {
       return "مشاريعك";

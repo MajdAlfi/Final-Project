@@ -127,7 +127,6 @@ class dataprovider extends ChangeNotifier {
 
   void editUser(TextEditingController name, TextEditingController goal,
       TextEditingController desc, BuildContext context) async {
-    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     print(goal.text.trim().isEmpty);
 
     await FirebaseFirestore.instance.collection("Users").doc(getUid()).update({

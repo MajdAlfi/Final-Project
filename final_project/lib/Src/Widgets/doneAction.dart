@@ -8,6 +8,7 @@ import 'package:final_project/Src/Services/Others/dataprovider.dart';
 import 'package:final_project/Src/Services/Others/languagesProvider.dart';
 import 'package:final_project/Src/Services/Others/mainColor.dart';
 import 'package:final_project/Src/Widgets/askLoginDialog.dart';
+import 'package:final_project/Src/Widgets/loadingDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ class doneAction extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(30))),
         child: TextButton(
           onPressed: () async {
+            laodingDialog(context);
             final auth = FirebaseAuth.instance;
             final length =
                 context.read<dataprovider>().btnList!.where((element) {
@@ -56,6 +58,8 @@ class doneAction extends StatelessWidget {
             }
             await analysisPoints(context);
             Navigator.pop(context);
+            Navigator.pop(context);
+
             if (auth.currentUser!.isAnonymous)
               askLoginDialog(context,
                   Provider.of<languages>(context, listen: false).tNotLogIn());
